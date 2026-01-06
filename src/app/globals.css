@@ -7,9 +7,6 @@ html {
 
 @custom-variant dark (&:is(.dark *));
 
-/* ============================= */
-/* THEME MAPPING (Tailwind) */
-/* ============================= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,13 +40,9 @@ html {
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ============================= */
-/* ROOT (DEFAULT THEME) */
-/* ============================= */
 :root {
   --radius: 0.5rem;
 
-  /* 🔥 MAIN BACKGROUND */
   --background: #181316;
   --foreground: #f5f5f5;
 
@@ -59,10 +52,16 @@ html {
   --popover: #201b1e;
   --popover-foreground: #f5f5f5;
 
-  --primary: oklch(0.62 0.22 262);
+  --primary: #00E26F; /* 🔥 এখানে primary solid color সেট করা হয়েছে */
   --primary-foreground: #ffffff;
 
-  --secondary: #2a2327;
+  --primary-gradient: linear-gradient(
+    180deg,
+    #00E26F 0%,
+    #00602F 111.36%
+  ); /* 🔥 primary gradient এখানে যোগ করা হয়েছে */
+
+  --secondary: #38323B;
   --secondary-foreground: #ffffff;
 
   --muted: #2a2327;
@@ -71,28 +70,15 @@ html {
   --accent: #2a2327;
   --accent-foreground: #ffffff;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #dc2626;
 
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: oklch(0.62 0.22 262);
-
-  /* Sidebar */
-  --sidebar: #1d171a;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: oklch(0.62 0.22 262);
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #2a2327;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: oklch(0.62 0.22 262);
+  --ring: #00E26F; /* 🔥 ring color-ও primary অনুযায়ী update */
 }
 
-/* ============================= */
-/* DARK THEME */
-/* ============================= */
+
 .dark {
-  /* 🔥 SAME FULL BACKGROUND */
   --background: #181316;
   --foreground: #ffffff;
 
@@ -130,9 +116,6 @@ html {
   --sidebar-ring: oklch(0.62 0.22 262);
 }
 
-/* ============================= */
-/* BASE STYLES */
-/* ============================= */
 @layer base {
   * {
     @apply border-border outline-ring/50;
