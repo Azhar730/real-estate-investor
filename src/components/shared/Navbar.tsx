@@ -128,7 +128,7 @@ const Navbar = () => {
                 {/* Search Button */}
                 <Button
                   size="icon"
-                  className="w-12 h-12 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-900 hover:from-emerald-600 hover:to-emerald-800 shadow-lg"
+                  className="w-12 h-12 rounded-full bg-linear-to-b from-green-400 to-green-800 hover:from-green-600 hover:to-green-900 shadow-lg"
                 >
                   <Search className="w-5 h-5 text-white stroke-[2]" />
                 </Button>
@@ -189,7 +189,7 @@ const Navbar = () => {
 
           {/* ===== ক্যাটাগরি পিলস (সব ডিভাইসে দেখাবে) ===== */}
           <div className="flex justify-center items-center gap-3 flex-wrap px-2">
-            <Button className="px-4 py-2.5 bg-gradient-to-b from-emerald-500 to-emerald-900 rounded-3xl text-white text-sm md:text-base hover:from-emerald-600 hover:to-emerald-800">
+            <Button className="px-4 py-2.5 bg-linear-to-b from-green-400 to-green-800 rounded-3xl text-white text-sm md:text-base hover:from-green-600 hover:to-green-900">
               All Properties
             </Button>
 

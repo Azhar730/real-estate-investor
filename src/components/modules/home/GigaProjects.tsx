@@ -12,7 +12,7 @@ import { gigaProjectsData } from "@/data/gigaProjectsData";
 
 export default function GigaProjects() {
     return (
-        <section className="p-4 lg:p-8 bg-neutral-800 overflow-hidden">
+        <section className="p-4 lg:p-8 overflow-hidden">
             <Container>
                 {/* Section Title */}
                 <div className="text-left mb-4">
@@ -59,7 +59,7 @@ export default function GigaProjects() {
                         {gigaProjectsData.map((project, index) => (
                             <SwiperSlide key={index}>
                                 <div className="group cursor-pointer">
-                                    <div className="relative overflow-hidden rounded-2xl">
+                                    <div className="relative overflow-hidden rounded-lg">
                                         {/* Image */}
                                         <div className="aspect-[4/3] relative overflow-hidden">
                                             <img

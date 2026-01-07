@@ -1,6 +1,6 @@
 import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
-import { FileCheck2, ShieldCheck, Lock } from "lucide-react";
+import { ShieldCheck, Lock } from "lucide-react";
 import Image from "next/image";
 import { PiSealCheckLight } from "react-icons/pi";
 
@@ -54,7 +54,7 @@ export default function VerifyHero() {
                 </Button>
             </div>
 
-            <div className="relative bg-stone-950">
+            <div className="relative">
                 <Container>
                     <div className="pt-8 md:py- lg:py-">
                         <h2 className="text-3xl md:text-4xl lg:text-2xl font-semibold text-white mb-4 md:mb-8 text-center">
