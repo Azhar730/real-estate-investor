@@ -10,6 +10,7 @@ import { ShieldCheck, Trophy, ChevronLeft, ChevronRight, Verified } from 'lucide
 import { Card } from '@/components/ui/card';
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { propertyData } from '@/data/propertyData';
+import Link from 'next/link';
 
 const Banner = () => {
 
@@ -99,7 +100,7 @@ const Banner = () => {
                       )}
                     </div>
 
-                    <div className="px-3 py-0 -mt-3">
+                    <Link href={'/property/1'} className="px-3 py-0 -mt-3">
                       <h3 className="text-2xl font-bold text-white">{card.price}</h3>
                       <p className="text-lg text-white mb-1">{card.title}</p>
                       <p className="text-sm text-gray-300 mt-1">{card.subtitle}</p>
@@ -124,7 +125,7 @@ const Banner = () => {
                         <span className="text-gray-400 font-semibold text-lg">{card.roi}</span>
                         <span className="text-gray-400 text-sm ml-4">{card.area}</span>
                       </div>
-                    </div>
+                    </Link>
                   </Card>
                 </SwiperSlide>
               ))}

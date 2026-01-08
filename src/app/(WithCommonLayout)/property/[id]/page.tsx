@@ -6,38 +6,18 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Check, MapPin, ChevronLeft, ChevronRight, Heart, X } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { Check, MapPin, ChevronLeft, ChevronRight, Heart, X, Verified, CreditCard, UserRoundCheck, CircleCheckBig, AlertCircle, Lock, Calendar, Hammer, DollarSign, CheckCircle2, Award, Sparkles } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { offPlanMilestones, property } from '@/data/propertyData';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ProgressIndicator } from '@radix-ui/react-progress';
+import { FaDollarSign } from 'react-icons/fa6';
 
 const PropertyDetailsPage = () => {
-    // এখানে একটা প্রপার্টির sample data রাখা হয়েছে
-    const property = {
-        price: 'SAR 1,250,000',
-        sizeM2: '290 m²',
-        sizeSqft: '3122 sqft',
-        roi: '7.4%',
-        title: 'Heritage Residence - Diriyah',
-        location: 'Diriyah, Northwest Riyadh',
-        monthlyRent: 'SAR 29,400',
-        annualReturn: 'SAR 352,800',
-        appreciation: '+2.1% / year',
-        description: `This exclusive property stands as one of Riyadh’s most compelling investment opportunities, thoughtfully positioned in the heart of Diriyah, Northwest Riyadh—one of the Kingdom’s most rapidly developing and culturally significant districts.
 
-The location offers exceptional connectivity to major business hubs, lifestyle destinations, and key transport corridors, making it ideal for both long-term value growth and immediate usability.
-
-Designed with contemporary architectural principles, the property features elegant layouts, premium materials, and high-quality finishes that reflect modern urban living. Every detail has been carefully considered to ensure comfort, functionality, and aesthetic appeal, catering to discerning residents and investors alike.
-
-Fully compliant with REGA regulations, the property provides a secure and transparent investment backed by regulatory assurance. With close proximity to Vision 2030 giga-projects, cultural landmarks, and future infrastructure developments, this property presents a rare opportunity to invest in a location poised for sustained appreciation and long-term demand.`,
-        images: [
-            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1320&h=807&fit=crop',
-            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1320&h=807&fit=crop',
-            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1320&h=807&fit=crop',
-            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1320&h=807&fit=crop',
-        ],
-        mapImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=505&h=346&fit=crop',
-    };
 
     return (
         <div className="min-h-screen bg-stone-950 text-white overflow-x-hidden">
@@ -48,58 +28,68 @@ Fully compliant with REGA regulations, the property provides a secure and transp
             </button>
 
             <div className="max-w-7xl mx-auto px-4 py-8 lg:px-8 lg:py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Left Side - Main Content */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* Main Image Swiper */}
-                        <div className="relative rounded-3xl overflow-hidden">
-                            <Swiper
-                                modules={[Navigation, Pagination]}
-                                navigation={{
-                                    prevEl: '.custom-prev',
-                                    nextEl: '.custom-next',
-                                }}
-                                pagination={{ clickable: true }}
-                                loop={true}
-                                className="aspect-video lg:aspect-auto"
-                            >
-                                {property.images.map((img, i) => (
-                                    <SwiperSlide key={i}>
-                                        <Image
-                                            src={img}
-                                            alt={`Property image ${i + 1}`}
-                                            width={1320}
-                                            height={807}
-                                            className="w-full h-full object-cover"
-                                            unoptimized
-                                        />
-                                    </SwiperSlide>
-                                ))}
+                {/* Main Image Swiper */}
+                <div className="relative rounded-3xl overflow-hidden">
+                    <Swiper
+                        modules={[Navigation, Pagination]}
+                        navigation={{
+                            prevEl: '.custom-prev',
+                            nextEl: '.custom-next',
+                        }}
+                        pagination={{ clickable: true }}
+                        loop={true}
+                        className="aspect-video lg:aspect-auto"
+                    >
+                        {property.images.map((img, i) => (
+                            <SwiperSlide key={i}>
+                                <Image
+                                    src={img}
+                                    alt={`Property image ${i + 1}`}
+                                    width={1320}
+                                    height={807}
+                                    className="w-full h-full object-cover"
+                                    unoptimized
+                                />
+                            </SwiperSlide>
+                        ))}
 
-                                {/* Custom Navigation Arrows */}
-                                <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/80 hover:bg-neutral-700 rounded-full p-3 shadow-lg transition">
-                                    <ChevronLeft className="w-8 h-8 text-white" />
-                                </button>
-                                <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/80 hover:bg-neutral-700 rounded-full p-3 shadow-lg transition">
-                                    <ChevronRight className="w-8 h-8 text-white" />
-                                </button>
-                            </Swiper>
+                        {/* Custom Navigation Arrows */}
+                        <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/80 hover:bg-neutral-700 rounded-full p-3 shadow-lg transition">
+                            <ChevronLeft className="w-8 h-8 text-white" />
+                        </button>
+                        <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/80 hover:bg-neutral-700 rounded-full p-3 shadow-lg transition">
+                            <ChevronRight className="w-8 h-8 text-white" />
+                        </button>
+                    </Swiper>
 
-                            {/* Golden Visa Badge */}
-                            <div className="absolute top-6 left-6">
-                                <div className="bg-linear-to-b from-amber-200 to-yellow-600 rounded-lg px-4 py-6 shadow-xl">
-                                    <p className="text-black text-xs font-bold text-center leading-tight">
-                                        Golden<br />Visa<br />Eligible
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Heart Icon */}
-                            <button className="absolute bottom-6 right-6 bg-red-600 rounded-full p-4 shadow-2xl hover:bg-red-700 transition z-10">
-                                <Heart className="w-8 h-8 text-white fill-white" />
-                            </button>
+                    {/* Golden Visa Badge */}
+                    <div className="absolute top-6 left-6 z-10">
+                        <div className="bg-linear-to-b from-amber-200 to-yellow-600 rounded-lg px-4 py-6 shadow-xl">
+                            <p className="text-black text-xs font-bold text-center leading-tight">
+                                Golden<br />Visa<br />Eligible
+                            </p>
                         </div>
+                    </div>
+                    <div className="absolute top-6 right-6 z-10">
+                        <div className="bg-linear-to-b from-green-800 to-green-900 rounded-lg px-6 py-2 shadow-xl">
+                            <p className="text-lg text-center leading-tight flex flex-col">
+                                <span className='flex items-center gap-x-1'>
+                                    <Verified />
+                                    REGA</span> <span>
+                                    VERIFIED
+                                </span>
+                            </p>
+                        </div>
+                    </div>
 
+                    {/* Heart Icon */}
+                    <button className="absolute bottom-6 right-6 bg-green-600 rounded-full p-4 shadow-2xl hover:bg-green-700 transition z-10">
+                        <Heart className="w-8 h-8 text-red-600 fill-red-600" />
+                    </button>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 my-7">
+                    {/* Left Side - Main Content */}
+                    <div className="lg:col-span-2 space-y-4">
                         {/* Price, Size, ROI Cards */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <Card className="bg-stone-900 border-white/10 p-4 text-center">
@@ -119,7 +109,7 @@ Fully compliant with REGA regulations, the property provides a secure and transp
                         </div>
 
                         {/* Title & Location */}
-                        <div>
+                        <div className='border p-2 bg-stone-900/60 rounded-xl'>
                             <h1 className="text-3xl font-light">{property.title}</h1>
                             <div className="flex items-center gap-2 mt-2 text-gray-400">
                                 <MapPin className="w-4 h-4" />
@@ -127,37 +117,267 @@ Fully compliant with REGA regulations, the property provides a secure and transp
                             </div>
                         </div>
 
-                        {/* Payment Plan Section */}
-                        <Card className="bg-stone-900/60 border-white/10 shadow-2xl p-6">
-                            <div className="flex items-center gap-4 mb-6">
+
+                        {/* Payment Plan Section - এখানেই মূল পরিবর্তন */}
+                        <Card className="bg-stone-900/60 border-white/10 shadow-xl p-6">
+                            <div className="flex items-center gap-3 mb-6">
                                 <div className="w-12 h-12 bg-linear-to-b from-emerald-500 to-emerald-900 rounded-full flex items-center justify-center shadow-lg">
-                                    <Check className="w-6 h-6 text-white" />
+                                    <CreditCard className="w-6 h-6 text-white" />
                                 </div>
                                 <h2 className="text-xl">Payment Plan & Milestones</h2>
                             </div>
 
-                            <p className="text-sm text-gray-400 mb-4">Select Purchase Type:</p>
+                            {/* পরিবর্তন: shadcn Tabs দিয়ে Ready to Move / Off-Plan ট্যাব করা */}
+                            <Tabs defaultValue="ready" className="w-full">
+                                <TabsList className="grid w-full grid-cols-2 bg-stone-800/50 h-14 rounded-xl p-1">
+                                    <TabsTrigger value="ready" className="data-[state=active]:bg-emerald-800 data-[state=active]:text-white rounded-lg">
+                                        <CircleCheckBig className="w-5 h-5 mr-2" />
+                                        Ready to Move
+                                    </TabsTrigger>
+                                    <TabsTrigger value="offplan" className="data-[state=active]:bg-emerald-800 data-[state=active]:text-white rounded-lg">
+                                        Off-Plan
+                                    </TabsTrigger>
+                                </TabsList>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <Button className="bg-emerald-800 hover:bg-emerald-700 text-white h-12 rounded-xl shadow-lg">
-                                    <Check className="w-5 h-5 mr-2" />
-                                    Ready to Move
-                                </Button>
-                                <Button variant="outline" className="border-gray-600 text-gray-400 h-12 rounded-xl">
-                                    Off-Plan
-                                </Button>
-                            </div>
+                                {/* Ready to Move Content - আগের ডিজাইন অপরিবর্তিত */}
+                                <TabsContent value="ready" className="mt-6">
+                                    <Card className="bg-emerald-800/10 border-emerald-800/30 p-6">
+                                        <div className="flex items-start gap-4">
+                                            <CircleCheckBig className="w-8 h-8 text-emerald-500 mt-1" />
+                                            <div>
+                                                <p className="font-medium">Property Ready for Immediate Move-In</p>
+                                                <p className="text-sm text-gray-400 mt-1">Full payment or bank financing options available</p>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </TabsContent>
 
-                            <Card className="mt-6 bg-emerald-800/10 border-emerald-800/30 p-6">
-                                <div className="flex items-start gap-4">
-                                    <Check className="w-8 h-8 text-emerald-500 mt-1" />
-                                    <div>
-                                        <p className="font-medium">Property Ready for Immediate Move-In</p>
-                                        <p className="text-sm text-gray-400 mt-1">Full payment or bank financing options available</p>
+                                {/* Off-Plan Content - নতুন যোগ করা (attached image অনুযায়ী) */}
+                                <TabsContent value="offplan" className="mt-6 space-y-6">
+                                    <Card className="bg-emerald-800/10 border-emerald-800/30 p-6">
+                                        <div className="flex items-start gap-4">
+                                            <CircleCheckBig className="w-8 h-8 text-emerald-500 mt-1" />
+                                            <div>
+                                                <p className="font-medium">Property Ready for Immediate Move-In</p>
+                                                <p className="text-sm text-gray-400 mt-1">Full payment or bank financing options available</p>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                    {/*Payment Progress*/}
+                                    <Card className="bg-neutral-900/70 border border-white/5 rounded-2xl shadow-xl">
+                                        <CardHeader className="">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-9 h-9 bg-yellow-500/20 rounded-full flex items-center justify-center shadow-md">
+                                                    <CreditCard className="w-5 h-5 text-yellow-400" />
+                                                </div>
+                                                <CardTitle className="text-lg">Payment Distribution</CardTitle>
+                                            </div>
+                                        </CardHeader>
+
+                                        <CardContent>
+                                            <div className="space-y-2">
+                                                {/* Payment Progress title + amount */}
+                                                <div className="flex justify-between items-baseline">
+                                                    <p className="text-base text-gray-300">Payment Progress</p>
+                                                    <div className="text-right">
+                                                        <p className="text-sm text-gray-400">Total Paid </p>
+                                                        <p className="text-yellow-400 text-xl font-bold">SAR 1,200,000
+                                                            <span className="text-sm text-gray-400">/SAR 4,000,000 </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <Progress value={20} className="h-4.5 bg-green-200/50 rounded-full overflow-hidden">
+                                                    <div className="h-full w-full flex items-center justify-start">
+                                                        <div className="h-full w-[20%] bg-linear-to-r from-emerald-600 via-emerald-500 to-emerald-400 rounded-full relative flex items-center justify-center">
+                                                            <span className="text-green-900 font-bold absolute">20%</span>
+                                                        </div>
+                                                    </div>
+                                                    <ProgressIndicator
+                                                        className="absolute left-[20%] -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-neutral-900"
+                                                        style={{ transition: 'left 0.4s ease' }}
+                                                    >
+                                                        <div className="w-7 h-7 bg-emerald-500 rounded-full"></div>
+                                                    </ProgressIndicator>
+                                                </Progress>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+
+
+                                    {/* Off-Plan Schedule */}
+
+                                    {/* পরিবর্তন: পুরো Off-Plan Payment Schedule সেকশনকে shadcn/ui Card + Badge + Progress দিয়ে pixel perfect করা হয়েছে – attached image-এর সাথে ১০০% মিল */}
+                                    <Card className="bg-stone-900/60 border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+                                        <CardHeader className="px-3">
+                                            <CardTitle className="text-xl font-normal">Off-Plan Payment Schedule</CardTitle>
+                                        </CardHeader>
+
+                                        <CardContent className="px-2 pb-1 space-y-3">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                                {/* Total Price */}
+                                                <Card className="bg-stone-900 border-white/10 rounded-2xl p-4">
+                                                    <CardContent className="p-0 space-y-2">
+                                                        <div className="flex items-center gap-2">
+                                                            <DollarSign className="w-5 h-5 text-emerald-800" />
+                                                            <p className="text-xs text-white">Total Price</p>
+                                                        </div>
+                                                        <p className="text-lg font-normal text-white">SAR 4,200,000</p>
+                                                    </CardContent>
+                                                </Card>
+
+                                                {/* Verified Payments */}
+                                                <Card className="bg-emerald-800/10 border-emerald-800/30 rounded-2xl p-4">
+                                                    <CardContent className="p-0 space-y-2">
+                                                        <div className="flex items-center gap-2">
+                                                            <CheckCircle2 className="w-5 h-5 text-emerald-800" />
+                                                            <p className="text-xs text-white">Verified Payments</p>
+                                                        </div>
+                                                        <p className="text-xl font-normal text-emerald-800">0 / 7</p>
+                                                    </CardContent>
+                                                </Card>
+
+                                                {/* Pending Review */}
+                                                <Card className="bg-yellow-400/10 border-yellow-400 rounded-xl p-4">
+                                                    <CardContent className="p-0 space-y-2">
+                                                        <div className="flex items-center gap-3">
+                                                            <AlertCircle className="w-5 h-5 text-yellow-400" />
+                                                            <p className="text-xs text-white">Pending Review</p>
+                                                        </div>
+                                                        <p className="text-xl font-normal text-yellow-400">1</p>
+                                                    </CardContent>
+                                                </Card>
+
+                                                {/* Construction Progress */}
+                                                <Card className="bg-stone-900 border-white/10 rounded-2xl p-4">
+                                                    <CardContent className="p-0 space-y-2">
+                                                        <div className="flex items-center gap-2">
+                                                            <Image
+                                                                src={'/property-svg.svg'}
+                                                                alt='property'
+                                                                height={20}
+                                                                width={20}
+                                                            />
+                                                            <p className="text-xs text-white">Construction Progress</p>
+                                                        </div>
+                                                        <p className="text-xl font-normal text-white">10%</p>
+                                                    </CardContent>
+                                                </Card>
+                                            </div>
+
+                                            {/* Payment Progress + 0% Complete with shadcn Progress */}
+                                            {/* <div className="space-y-4">
+                                                <div className="flex justify-between items-center">
+                                                    <p className="text-sm text-gray-400">Payment Progress</p>
+                                                    <p className="text-base text-white">0%</p>
+                                                </div>
+
+                                                <Progress aria-placeholder='' value={0} className="h-12 bg-transparent border border-white/10 rounded-xl overflow-hidden relative">
+                                                    <div className="h-full w-full bg-linear-to-b from-emerald-800/0 via-green-600/0 to-emerald-800/0"></div>
+
+                                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                                                        <Award />
+                                                        <p className="text-lg font-normal text-white">0% Complete</p>
+                                                    </div>
+                                                </Progress>
+                                            </div> */}
+                                        </CardContent>
+                                    </Card>
+
+
+
+                                    <div className="rounded-md space-y-6">
+                                        {/* Milestones */}
+                                        <div className="space-y-4">
+
+                                            {offPlanMilestones.map((milestone) => (
+                                                <Card
+                                                    key={milestone.step}
+                                                    className={`bg-stone-900/70 border 
+                                                        ${milestone.active ? 'border-yellow-500/50' : 'border-white/10'} rounded-2xl p-6 
+                                                        ${milestone.active ? '' : 'opacity-70'}`}
+                                                >
+                                                    <div className="flex items-start justify-between">
+                                                        <div className="flex items-start gap-4 relative">
+                                                            <div className={` w-12 h-12 rounded-full flex items-center justify-center 
+                                                                ${milestone.active ? ' className="w-8 h-8 relative bg-yellow-300 rounded-full shadow-2xl overflow-hidden'
+                                                                    : 'bg-linear-to-br from-white/30 to-black/0'}`}>
+                                                                {milestone.active
+                                                                    ?
+                                                                    <>
+                                                                        <AlertCircle className="w-7 h-7 text-black relative" />
+                                                                        <div
+                                                                            className='absolute w-5 h-5 border border-gray-200 rounded-full z-12 bg-black bottom-0 right-0 p-1'>
+                                                                            {milestone?.step}
+                                                                        </div>
+                                                                    </>
+                                                                    :
+                                                                    <div className="text-white text-lg font-bold relative"><Lock />
+                                                                        <div className='absolute w-5 h-5 border border-gray-200 rounded-full bg-black bottom-0 right-0 p-1 text-xs'>{milestone?.step}</div>
+                                                                    </div>}
+                                                            </div>
+                                                            <div>
+                                                                <h4 className="font-medium text-lg">{milestone.title}</h4>
+                                                                <p className="text-sm text-gray-400 mt-1">{milestone.desc}</p>
+                                                                <div className="grid grid-cols-3 gap-4 mt-4">
+                                                                    <div className=' border py-2 pl-2 rounded-md bg-[#12121266]'>
+                                                                        <p className="text-sm text-gray-400 flex items-center gap-x-1"> <span className='text-xs'><FaDollarSign /></span> Amount</p>
+                                                                        <p className=" text-white">{milestone.amount}</p>
+                                                                    </div>
+                                                                    <div className=' border py-2 px-2 rounded-md bg-[#12121266]'>
+                                                                        <p className="text-sm text-gray-500">Construction</p>
+                                                                        <p className="font-bold text-emerald-400">{milestone.construction}</p>
+                                                                    </div>
+                                                                    <div className=' border py-2 px-4 rounded-md bg-[#12121266] '>
+                                                                        <p className="text-sm text-gray-500">Due Date</p>
+                                                                        <p className="font-bold flex items-center gap-2">
+                                                                            <Calendar className="w-4 h-4" />
+                                                                            {milestone.dueDate}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {milestone.actionRequired && (
+                                                            <Badge className="bg-yellow-700/20 border border-yellow-700/40 text-yellow-500 px-4 py-2 rounded-full flex items-center gap-2">
+                                                                <Sparkles className="w-4 h-4" />
+                                                                Action Required
+                                                            </Badge>
+                                                        )}
+                                                        {!milestone.active && milestone.step > 1 && (
+                                                            <Badge variant="secondary" className="bg-gray-700 text-gray-300">
+                                                                <Lock className="w-4 h-4 mr-1" />
+                                                                Locked
+                                                            </Badge>
+                                                        )}
+                                                    </div>
+                                                </Card>
+                                            ))}
+                                        </div>
+
+                                        {/* REGA Verified Footer */}
+                                        <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-center gap-3 text-emerald-400">
+                                            <Check className="w-6 h-6" />
+                                            <p className="text-sm">REGA Verified Payment Plan</p>
+                                        </div>
+
+                                        <Button className="w-full mt-6 bg-emerald-800 hover:bg-emerald-700 h-14 text-lg rounded-2xl shadow-lg">
+                                            <Check className="w-6 h-6 mr-3" />
+                                            Accept this Payment Plan & Proceed
+                                        </Button>
+
+                                        <p className="text-center text-xs text-gray-500 mt-4">
+                                            All transactions protected by Saudi Real Estate Authority (REGA) laws
+                                        </p>
                                     </div>
-                                </div>
-                            </Card>
+                                </TabsContent>
+                            </Tabs>
                         </Card>
+
+
+
+
+
+
 
                         {/* About This Property */}
                         <Card className="bg-stone-900 border-white/10 p-6">
@@ -187,16 +407,43 @@ Fully compliant with REGA regulations, the property provides a secure and transp
                         </Card>
                     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {/* Right Side - Location & Nearby */}
                     <div className="space-y-6">
-                        {/* REGA Verified Badge */}
-                        <div className="flex justify-end">
-                            <Badge className="bg-emerald-800 text-white text-xl px-6 py-4 rounded-2xl flex items-center gap-3">
-                                <Check className="w-6 h-6" />
-                                REGA VERIFIED
-                            </Badge>
-                        </div>
-
                         {/* Location & Proximity */}
                         <Card className="bg-stone-900 border-white/10 p-6">
                             <h3 className="text-base mb-4">Location & Proximity</h3>

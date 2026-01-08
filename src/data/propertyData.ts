@@ -61,3 +61,39 @@ export const propertyData = [
         ],
     },
 ];
+
+
+export const property = {
+        price: 'SAR 1,250,000',
+        sizeM2: '290 m²',
+        sizeSqft: '3122 sqft',
+        roi: '7.4%',
+        title: 'Heritage Residence - Diriyah',
+        location: 'Diriyah, Northwest Riyadh',
+        monthlyRent: 'SAR 29,400',
+        annualReturn: 'SAR 352,800',
+        appreciation: '+2.1% / year',
+        description: `This exclusive property stands as one of Riyadh’s most compelling investment opportunities, thoughtfully positioned in the heart of Diriyah, Northwest Riyadh—one of the Kingdom’s most rapidly developing and culturally significant districts.
+
+The location offers exceptional connectivity to major business hubs, lifestyle destinations, and key transport corridors, making it ideal for both long-term value growth and immediate usability.
+
+Designed with contemporary architectural principles, the property features elegant layouts, premium materials, and high-quality finishes that reflect modern urban living. Every detail has been carefully considered to ensure comfort, functionality, and aesthetic appeal, catering to discerning residents and investors alike.
+
+Fully compliant with REGA regulations, the property provides a secure and transparent investment backed by regulatory assurance. With close proximity to Vision 2030 giga-projects, cultural landmarks, and future infrastructure developments, this property presents a rare opportunity to invest in a location poised for sustained appreciation and long-term demand.`,
+        images: [
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1320&h=807&fit=crop',
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1320&h=807&fit=crop',
+            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1320&h=807&fit=crop',
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1320&h=807&fit=crop',
+        ],
+        mapImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=505&h=346&fit=crop',
+    };
+
+    export const offPlanMilestones = [
+    { step: 1, title: 'Deposit (10%)', desc: 'Initial booking deposit to secure property', amount: 'SAR 420,000', construction: '0%', dueDate: '2026-02-02', active: true, actionRequired: true },
+    { step: 2, title: 'On 20% Completion', desc: 'Payment after foundation and structural work completion', amount: 'SAR 840,000', construction: '20%', dueDate: '2026-05-03', active: false },
+    { step: 3, title: 'On 40% Completion', desc: 'Payment after walls and roofing completion', amount: 'SAR 1,260,000', construction: '40%', dueDate: '2026-08-01', active: false },
+    { step: 4, title: 'On 60% Completion', desc: 'Payment after electrical and plumbing installation', amount: 'SAR 840,000', construction: '60%', dueDate: '2026-10-30', active: false },
+    { step: 5, title: 'On 80% Completion', desc: 'Payment after finishing and fixtures installation', amount: 'SAR 420,000', construction: '80%', dueDate: '2026-12-29', active: false },
+    { step: 6, title: 'Final Payment (100%)', desc: 'Final payment upon handover and title deed transfer', amount: 'SAR 420,000', construction: '100%', dueDate: '2027-01-28', active: false },
+  ];
