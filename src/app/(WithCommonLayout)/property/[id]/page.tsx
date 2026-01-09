@@ -6,7 +6,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Check, MapPin, ChevronLeft, ChevronRight, Heart, X, Verified, CreditCard, UserRoundCheck, CircleCheckBig, AlertCircle, Lock, Calendar, Hammer, DollarSign, CheckCircle2, Award, Sparkles } from 'lucide-react';
+import { Check, MapPin, ChevronLeft, ChevronRight, Heart, X, Verified, CreditCard, CircleCheckBig, AlertCircle, Lock, Calendar, Hammer, DollarSign, CheckCircle2, Award, Sparkles, Shield, MoveLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,7 @@ import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProgressIndicator } from '@radix-ui/react-progress';
 import { FaDollarSign } from 'react-icons/fa6';
+import Link from 'next/link';
 
 const PropertyDetailsPage = () => {
 
@@ -22,10 +23,10 @@ const PropertyDetailsPage = () => {
     return (
         <div className="min-h-screen bg-stone-950 text-white overflow-x-hidden">
             {/* Close Button */}
-            <button className="fixed top-6 left-6 z-50 flex items-center gap-2 text-white hover:text-gray-300 transition">
-                <X className="w-5 h-5" />
-                <span className="text-base">Close</span>
-            </button>
+            <Link href={'/'} className="flex items-center gap-2 text-white hover:text-gray-300 transition">
+                <MoveLeft className="w-4" />
+                <span className="text-base">Back</span>
+            </Link>
 
             <div className="max-w-7xl mx-auto px-4 py-8 lg:px-8 lg:py-12">
                 {/* Main Image Swiper */}
@@ -54,10 +55,10 @@ const PropertyDetailsPage = () => {
                         ))}
 
                         {/* Custom Navigation Arrows */}
-                        <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/80 hover:bg-neutral-700 rounded-full p-3 shadow-lg transition">
+                        <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/40 cursor-pointer rounded-full p-3 shadow-lg transition">
                             <ChevronLeft className="w-8 h-8 text-white" />
                         </button>
-                        <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/80 hover:bg-neutral-700 rounded-full p-3 shadow-lg transition">
+                        <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-800/40 rounded-full cursor-pointer p-3 shadow-lg transition">
                             <ChevronRight className="w-8 h-8 text-white" />
                         </button>
                     </Swiper>
@@ -117,8 +118,6 @@ const PropertyDetailsPage = () => {
                             </div>
                         </div>
 
-
-                        {/* Payment Plan Section - এখানেই মূল পরিবর্তন */}
                         <Card className="bg-stone-900/60 border-white/10 shadow-xl p-6">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="w-12 h-12 bg-linear-to-b from-emerald-500 to-emerald-900 rounded-full flex items-center justify-center shadow-lg">
@@ -127,7 +126,7 @@ const PropertyDetailsPage = () => {
                                 <h2 className="text-xl">Payment Plan & Milestones</h2>
                             </div>
 
-                            {/* পরিবর্তন: shadcn Tabs দিয়ে Ready to Move / Off-Plan ট্যাব করা */}
+                            {/* Ready to Move / Off-Plan  */}
                             <Tabs defaultValue="ready" className="w-full">
                                 <TabsList className="grid w-full grid-cols-2 bg-stone-800/50 h-14 rounded-xl p-1">
                                     <TabsTrigger value="ready" className="data-[state=active]:bg-emerald-800 data-[state=active]:text-white rounded-lg">
@@ -139,7 +138,7 @@ const PropertyDetailsPage = () => {
                                     </TabsTrigger>
                                 </TabsList>
 
-                                {/* Ready to Move Content - আগের ডিজাইন অপরিবর্তিত */}
+                                {/* Ready to Move Content*/}
                                 <TabsContent value="ready" className="mt-6">
                                     <Card className="bg-emerald-800/10 border-emerald-800/30 p-6">
                                         <div className="flex items-start gap-4">
@@ -152,7 +151,7 @@ const PropertyDetailsPage = () => {
                                     </Card>
                                 </TabsContent>
 
-                                {/* Off-Plan Content - নতুন যোগ করা (attached image অনুযায়ী) */}
+                                {/* Off-Plan Content */}
                                 <TabsContent value="offplan" className="mt-6 space-y-6">
                                     <Card className="bg-emerald-800/10 border-emerald-800/30 p-6">
                                         <div className="flex items-start gap-4">
@@ -203,10 +202,7 @@ const PropertyDetailsPage = () => {
                                         </CardContent>
                                     </Card>
 
-
-                                    {/* Off-Plan Schedule */}
-
-                                    {/* পরিবর্তন: পুরো Off-Plan Payment Schedule সেকশনকে shadcn/ui Card + Badge + Progress দিয়ে pixel perfect করা হয়েছে – attached image-এর সাথে ১০০% মিল */}
+                                    {/* Off-Plan Payment Schedule*/}
                                     <Card className="bg-stone-900/60 border-white/10 rounded-2xl shadow-2xl overflow-hidden">
                                         <CardHeader className="px-3">
                                             <CardTitle className="text-xl font-normal">Off-Plan Payment Schedule</CardTitle>
@@ -285,7 +281,7 @@ const PropertyDetailsPage = () => {
 
 
 
-                                    <div className="rounded-md space-y-6">
+                                    <div className="rounded-md space-y-4">
                                         {/* Milestones */}
                                         <div className="space-y-4">
 
@@ -298,41 +294,52 @@ const PropertyDetailsPage = () => {
                                                 >
                                                     <div className="flex items-start justify-between">
                                                         <div className="flex items-start gap-4 relative">
-                                                            <div className={` w-12 h-12 rounded-full flex items-center justify-center 
-                                                                ${milestone.active ? ' className="w-8 h-8 relative bg-yellow-300 rounded-full shadow-2xl overflow-hidden'
-                                                                    : 'bg-linear-to-br from-white/30 to-black/0'}`}>
-                                                                {milestone.active
-                                                                    ?
-                                                                    <>
-                                                                        <AlertCircle className="w-7 h-7 text-black relative" />
-                                                                        <div
-                                                                            className='absolute w-5 h-5 border border-gray-200 rounded-full z-12 bg-black bottom-0 right-0 p-1'>
-                                                                            {milestone?.step}
+                                                            <div className="flex items-start gap-6 relative pl-2">
+                                                                {/* Circle with number / icon */}
+                                                                <div className="relative shrink-0">
+                                                                    {milestone.active ? (
+                                                                        <>
+                                                                            {/* glowing circle + exclamation icon */}
+                                                                            <div className={` w-12 h-12 rounded-full flex items-center justify-center ${milestone.active ? "w-8 h-8 relative bg-yellow-300 rounded-full shadow-2xl overflow-hidden" : 'bg-linear-to-br from-white/30 to-black/0'}`}>
+                                                                                <AlertCircle className="w-7 h-7 text-black" />
+                                                                            </div>
+                                                                            {/* Small number badge bottom-right */}
+                                                                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-black rounded-full shadow-2xl border border-gray-700 flex items-center justify-center">
+                                                                                <span className="text-white text-sm font-bold">{milestone.step}</span>
+                                                                            </div>
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            {/*lock icon */}
+                                                                            <div className="w-14 h-14 bg-linear-to-br from-white/30 to-black/0 rounded-full flex items-center justify-center relative">
+                                                                                <Lock className="w-8 h-8 text-gray-400" />
+                                                                            </div>
+                                                                            {/* Small number badge bottom-right */}
+                                                                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-black rounded-full shadow-2xl border border-gray-700 flex items-center justify-center">
+                                                                                <span className="text-gray-400 text-sm font-bold">{milestone.step}</span>
+                                                                            </div>
+                                                                        </>
+                                                                    )}
+                                                                </div>
+                                                                <div>
+                                                                    <h4 className="font-medium text-lg">{milestone.title}</h4>
+                                                                    <p className="text-sm text-gray-400 mt-1">{milestone.desc}</p>
+                                                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
+                                                                        <div className=' border py-2 pl-2 rounded-md bg-[#12121266]'>
+                                                                            <p className="text-sm text-gray-400 flex items-center gap-x-1"> <span className='text-xs'><FaDollarSign /></span> Amount</p>
+                                                                            <p className=" text-white">{milestone.amount}</p>
                                                                         </div>
-                                                                    </>
-                                                                    :
-                                                                    <div className="text-white text-lg font-bold relative"><Lock />
-                                                                        <div className='absolute w-5 h-5 border border-gray-200 rounded-full bg-black bottom-0 right-0 p-1 text-xs'>{milestone?.step}</div>
-                                                                    </div>}
-                                                            </div>
-                                                            <div>
-                                                                <h4 className="font-medium text-lg">{milestone.title}</h4>
-                                                                <p className="text-sm text-gray-400 mt-1">{milestone.desc}</p>
-                                                                <div className="grid grid-cols-3 gap-4 mt-4">
-                                                                    <div className=' border py-2 pl-2 rounded-md bg-[#12121266]'>
-                                                                        <p className="text-sm text-gray-400 flex items-center gap-x-1"> <span className='text-xs'><FaDollarSign /></span> Amount</p>
-                                                                        <p className=" text-white">{milestone.amount}</p>
-                                                                    </div>
-                                                                    <div className=' border py-2 px-2 rounded-md bg-[#12121266]'>
-                                                                        <p className="text-sm text-gray-500">Construction</p>
-                                                                        <p className="font-bold text-emerald-400">{milestone.construction}</p>
-                                                                    </div>
-                                                                    <div className=' border py-2 px-4 rounded-md bg-[#12121266] '>
-                                                                        <p className="text-sm text-gray-500">Due Date</p>
-                                                                        <p className="font-bold flex items-center gap-2">
-                                                                            <Calendar className="w-4 h-4" />
-                                                                            {milestone.dueDate}
-                                                                        </p>
+                                                                        <div className=' border py-2 px-2 rounded-md bg-[#12121266]'>
+                                                                            <p className="text-sm text-gray-500">Construction</p>
+                                                                            <p className="font-bold text-emerald-400">{milestone.construction}</p>
+                                                                        </div>
+                                                                        <div className=' border py-2 px-4 rounded-md bg-[#12121266] '>
+                                                                            <p className="text-sm text-gray-500">Due Date</p>
+                                                                            <p className="font-bold flex items-center gap-2">
+                                                                                <Calendar className="w-4 h-4" />
+                                                                                {milestone.dueDate}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -355,29 +362,29 @@ const PropertyDetailsPage = () => {
                                         </div>
 
                                         {/* REGA Verified Footer */}
-                                        <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-center gap-3 text-emerald-400">
-                                            <Check className="w-6 h-6" />
-                                            <p className="text-sm">REGA Verified Payment Plan</p>
+                                        <div className="border p-4 rounded-md border-white/10 flex items-center gap-3">
+
+                                            <div className='bg-emerald-700/30 p-2 rounded-full'>
+                                                <Shield className="w-6 h-6 text-emerald-700" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm">REGA Verified Payment Plan</p>
+                                                <p className='text-xs text-gray-400'>All milestones monitored by Saudi Real Estate General Authority</p>
+                                            </div>
                                         </div>
 
-                                        <Button className="w-full mt-6 bg-emerald-800 hover:bg-emerald-700 h-14 text-lg rounded-2xl shadow-lg">
-                                            <Check className="w-6 h-6 mr-3" />
+                                        <Button className="w-full  bg-emerald-700 hover:bg-emerald-800 h-14 text-lg rounded-xl shadow-lg">
+                                            <CircleCheckBig className="" />
                                             Accept this Payment Plan & Proceed
                                         </Button>
 
-                                        <p className="text-center text-xs text-gray-500 mt-4">
+                                        <p className="text-center text-xs text-gray-500">
                                             All transactions protected by Saudi Real Estate Authority (REGA) laws
                                         </p>
                                     </div>
                                 </TabsContent>
                             </Tabs>
                         </Card>
-
-
-
-
-
-
 
                         {/* About This Property */}
                         <Card className="bg-stone-900 border-white/10 p-6">
@@ -407,41 +414,6 @@ const PropertyDetailsPage = () => {
                         </Card>
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     {/* Right Side - Location & Nearby */}
                     <div className="space-y-6">
                         {/* Location & Proximity */}
@@ -464,15 +436,13 @@ const PropertyDetailsPage = () => {
                         </Card>
 
                         {/* Nearby Giga-Projects */}
-                        <Card className="bg-neutral-800 border-neutral-800 p-6">
-                            <h3 className="text-base mb-4">Nearby Giga-Projects</h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-emerald-800 rounded-full opacity-50" />
-                                    <div>
-                                        <p className="font-medium">New Murabba</p>
-                                        <p className="text-sm text-gray-400">12 mins to New Murabba (Mukaab)</p>
-                                    </div>
+                        <Card className="bg-neutral-800 border-neutral-800 p-4">
+                            <h3 className="text-base">Nearby Giga-Projects</h3>
+                            <div className="flex items-center gap-x-3">
+                                <div className="w-2 h-2 bg-emerald-800 rounded-full opacity-50" />
+                                <div>
+                                    <p className="font-medium">New Murabba</p>
+                                    <p className="text-sm text-gray-400">12 mins to New Murabba (Mukaab)</p>
                                 </div>
                             </div>
                         </Card>

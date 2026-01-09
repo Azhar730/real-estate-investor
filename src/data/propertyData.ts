@@ -86,7 +86,7 @@ Fully compliant with REGA regulations, the property provides a secure and transp
             'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1320&h=807&fit=crop',
             'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1320&h=807&fit=crop',
         ],
-        mapImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=505&h=346&fit=crop',
+        mapImage: '/map.png',
     };
 
     export const offPlanMilestones = [
