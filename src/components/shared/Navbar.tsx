@@ -24,7 +24,7 @@ const Navbar = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavOpened, setIsNavOpened] = useState(false); // মোবাইল মেনু টগল
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
@@ -67,7 +67,7 @@ const Navbar = () => {
           {/* ===== টপ রো: লোগো + সার্চ বার + রাইট সাইড ===== */}
           <div className="flex items-center justify-between gap-4">
             {/* লোগো */}
-            <Link href="/" className="flex-shrink-0">
+            <Link href="/" className="shrink-0">
               <Image
                 alt="sakk"
                 src="/sakk.png"
