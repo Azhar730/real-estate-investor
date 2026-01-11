@@ -14,6 +14,7 @@ import Image from "next/image";
 import { LicenseInput } from "@/components/modules/auth/LicenseInput";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import Link from "next/link";
 
 type FormData = {
     mode: "signin" | "signup";
@@ -71,16 +72,16 @@ function LoginPAge() {
             router.push("/verify-otp");
           }
         } else {
-          toast.error("ভুল পাসওয়ার্ড!");
+          toast.error("Wrong Password!");
         }
       } else {
-        toast.error("ইউজার পাওয়া যায়নি!");
+        toast.error("User doesn't exists!");
       }
     }
     };
     return (<>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 p-4">
-            <div className="relative h-full">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 p-4">
+            <div className="relative h-full overflow-hidden rounded-2xl">
                 {/* Background Image*/}
                 <Image
                     src="/signup.jpg"
@@ -102,7 +103,7 @@ function LoginPAge() {
                     </p>
 
                     {/* Main Heading */}
-                    <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+                    <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
                         The Future of Saudi
                         <br className="sm:hidden" />
                         <span className="text-orange-400"> Investment</span>
@@ -111,7 +112,7 @@ function LoginPAge() {
                     </h1>
 
                     {/* Description */}
-                    <p className="mb-10 max-w-3xl text-base leading-relaxed text-gray-200 md:text-lg lg:text-xl">
+                    <p className="mb-4 max-w-3xl text-base leading-relaxed text-gray-200 md:text-lg lg:text-xl">
                         Access exclusive <strong>Vision 2030</strong> mega-projects through a trusted,
                         <br className="hidden sm:inline" />
                         REGA-verified platform built for discerning investors and licensed professionals.
@@ -359,7 +360,7 @@ function LoginPAge() {
                                     <Checkbox id="remember" className="text-emerald-700" />
                                     <label htmlFor="remember" className="text-sm text-white">Remember me</label>
                                 </div>
-                                <a href="#" className="text-sm text-orange-400 hover:underline">Forgot password?</a>
+                                <Link href="/forgot-password" className="text-sm text-orange-400 hover:underline">Forgot password?</Link>
                             </div>
                         )}
 

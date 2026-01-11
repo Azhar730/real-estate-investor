@@ -14,7 +14,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { Input } from "../ui/input";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import Container from "./Container";
 
 const Navbar = () => {
   const pathName = usePathname();
@@ -23,7 +22,7 @@ const Navbar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavOpened, setIsNavOpened] = useState(false); // মোবাইল মেনু টগল
+  const [isNavOpened, setIsNavOpened] = useState(false);
   const isLoggedIn = true;
 
   const handleScroll = () => {
@@ -130,7 +129,7 @@ const Navbar = () => {
                   size="icon"
                   className="w-12 h-12 rounded-full bg-linear-to-b from-green-400 to-green-800 hover:from-green-600 hover:to-green-900 shadow-lg"
                 >
-                  <Search className="w-5 h-5 text-white stroke-[2]" />
+                  <Search className="w-5 h-5 text-white stroke-2" />
                 </Button>
               </div>
             </div>
@@ -223,7 +222,7 @@ const Navbar = () => {
                 placeholder="Search properties..."
                 className="border-0 bg-transparent p-0 h-auto text-sm text-gray-300 placeholder-gray-500 focus-visible:ring-0 flex-1"
               />
-              <Button size="icon" className="w-10 h-10 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-900">
+              <Button size="icon" className="w-10 h-10 rounded-full bg-linear-to-b from-emerald-500 to-emerald-900">
                 <Search className="w-4 h-4 text-white" />
               </Button>
             </div>
