@@ -17,7 +17,7 @@ import { ProgressIndicator } from '@radix-ui/react-progress';
 import { FaDollarSign } from 'react-icons/fa6';
 import Link from 'next/link';
 
-const PropertyDetailsPage = () => {
+const PropertyPreviewPage = () => {
 
     return (
         <div className="min-h-screen bg-stone-950 text-white overflow-x-hidden">
@@ -268,7 +268,7 @@ const PropertyDetailsPage = () => {
 
                                                 <div className="h-12 bg-transparent border border-white/10 rounded-xl overflow-hidden relative flex items-center justify-center gap-x-2">
                                                     <Award />
-                                                        <p className="text-lg font-normal text-white"> 0% Complete</p>
+                                                    <p className="text-lg font-normal text-white"> 0% Complete</p>
                                                 </div>
                                             </div>
                                         </CardContent>
@@ -462,4 +462,4 @@ const PropertyDetailsPage = () => {
     );
 };
 
-export default PropertyDetailsPage;
+export default PropertyPreviewPage;

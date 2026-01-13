@@ -1,33 +1,65 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Check, MapPin, ChevronLeft, ChevronRight, Heart, X, Verified, CreditCard, CircleCheckBig, AlertCircle, Lock, Calendar, Hammer, DollarSign, CheckCircle2, Award, Sparkles, Shield, MoveLeft } from 'lucide-react';
+import {
+    Check, MapPin, ChevronLeft, ChevronRight, Heart, X, Verified,
+    CreditCard, CircleCheckBig, AlertCircle, Lock, Calendar, Hammer,
+    DollarSign, CheckCircle2, Award, Sparkles, Shield, MoveLeft,
+    CircleAlert,
+    Edit
+} from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { offPlanMilestones, property } from '@/data/propertyData';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ProgressIndicator } from '@radix-ui/react-progress';
+import { offPlanMilestones } from '@/data/propertyData';
 import { FaDollarSign } from 'react-icons/fa6';
-import Link from 'next/link';
+import { toast } from 'sonner';
 
-const PropertyDetailsPage = () => {
+const PropertyPreviewPage = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [previewData, setPreviewData] = useState<any>(null);
 
+    useEffect(() => {
+        const previewDataParam = searchParams.get('previewData');
+        if (previewDataParam) {
+            try {
+                const parsedData = JSON.parse(previewDataParam);
+                setPreviewData(parsedData);
+            } catch (error) {
+                console.error("Error parsing preview data:", error);
+            }
+        }
+    }, [searchParams]);
+
+    if (!previewData) {
+        return <div className="min-h-screen bg-stone-950 flex items-center justify-center text-white">
+            Loading preview...
+        </div>;
+    }
+    const handlePublish = () => {
+        console.log("Confirmed & Published Data:", previewData);
+        toast.success("Property Published Successfully!");
+        router.push("/dashboard");
+
+    }
+
+    console.log("preview data", previewData)
     return (
         <div className="min-h-screen bg-stone-950 text-white overflow-x-hidden">
-            {/* Close Button */}
-            <Link href={'/'} className="flex items-center gap-2 text-white hover:text-gray-300 transition">
-                <MoveLeft className="w-4" />
-                <span className="text-base">Back</span>
-            </Link>
 
-            <div className="max-w-7xl mx-auto px-4 py-8 lg:px-8 lg:py-12">
+
+            <div className="max-w-7xl mx-auto px-4 py-1 lg:px-8 lg:py-2">
                 {/* Main Image Swiper */}
                 <div className="relative rounded-3xl overflow-hidden">
                     <Swiper
@@ -40,13 +72,13 @@ const PropertyDetailsPage = () => {
                         loop={true}
                         className="aspect-video lg:aspect-auto"
                     >
-                        {property.images.map((img, i) => (
+                        {previewData.images.map((img: any, i: any) => (
                             <SwiperSlide key={i}>
                                 <Image
                                     src={img}
                                     alt={`Property image ${i + 1}`}
                                     width={1320}
-                                    height={807}
+                                    height={500}
                                     className="w-full h-full object-cover"
                                     unoptimized
                                 />
@@ -81,6 +113,44 @@ const PropertyDetailsPage = () => {
                             </p>
                         </div>
                     </div>
+                    <div className="absolute top-0 z-10 w-full">
+                        <div className="flex items-center justify-between bg-linear-to-b from-green-600 to-green-900 px-16 py-2 shadow-xl">
+                            <div className='flex items-center gap-2'>
+                                <div>
+                                    <CircleAlert />
+                                </div>
+                                <div>
+                                    <p className='text-sm'>Preview Mode</p>
+                                    <p className='text-xs'>This is a preview. Your listing is not yet visible to buyers.</p>
+
+                                </div>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <Button
+                                    variant="ghost"
+                                    className="bg-white text-black hover:bg-emerald-800/50"
+                                    onClick={() => router.back()} // Back to AddPropertyModal
+                                >
+                                    <Edit className="mr-2 h-5 w-5" />
+                                    Back to Edit
+                                </Button>
+                                <Button
+                                    className="bg-emerald-600 hover:bg-emerald-500 gap-2"
+                                    onClick={handlePublish}
+                                >
+                                    <CircleCheckBig />
+                                    Confirm & Publish
+                                </Button>
+
+                                <Button
+                                    onClick={() => router.push("/dashboard")} // Cross → সব বন্ধ + ড্যাশবোর্ডে
+                                    className="text-white bg-emerald-500"
+                                >
+                                    <X className="h-6 w-6" />
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Heart Icon */}
                     <button className="absolute bottom-6 right-6 bg-green-600 rounded-full p-4 shadow-2xl hover:bg-green-700 transition z-10">
@@ -94,26 +164,26 @@ const PropertyDetailsPage = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <Card className="bg-stone-900 border-white/10 p-4 text-center">
                                 <p className="text-zinc-400 text-sm">Price</p>
-                                <p className="text-2xl font-light mt-1">{property.price}</p>
+                                <p className="text-2xl font-light mt-1">{previewData?.price}</p>
                             </Card>
                             <Card className="bg-stone-900 border-white/10 p-4 text-center">
                                 <p className="text-zinc-400 text-sm">Size</p>
-                                <p className="text-2xl font-light mt-1">{property.sizeM2}</p>
-                                <p className="text-zinc-500 text-sm">{property.sizeSqft}</p>
+                                <p className="text-2xl font-light mt-1">{previewData?.sizeM2}</p>
+                                <p className="text-zinc-500 text-sm">{previewData?.sizeSqft}</p>
                             </Card>
                             <Card className="bg-stone-900 border-white/10 p-4 text-center">
                                 <p className="text-zinc-400 text-sm">ROI</p>
-                                <p className="text-emerald-500 text-2xl font-light mt-1">{property.roi}</p>
+                                <p className="text-emerald-500 text-2xl font-light mt-1">{previewData?.roi}</p>
                                 <p className="text-zinc-500 text-sm">Annual</p>
                             </Card>
                         </div>
 
                         {/* Title & Location */}
                         <div className='border p-2 bg-stone-900/60 rounded-xl'>
-                            <h1 className="text-3xl font-light">{property.title}</h1>
+                            <h1 className="text-3xl font-light">{previewData?.title}</h1>
                             <div className="flex items-center gap-2 mt-2 text-gray-400">
                                 <MapPin className="w-4 h-4" />
-                                <p>{property.location}</p>
+                                <p>{previewData?.location}</p>
                             </div>
                         </div>
 
@@ -268,7 +338,7 @@ const PropertyDetailsPage = () => {
 
                                                 <div className="h-12 bg-transparent border border-white/10 rounded-xl overflow-hidden relative flex items-center justify-center gap-x-2">
                                                     <Award />
-                                                        <p className="text-lg font-normal text-white"> 0% Complete</p>
+                                                    <p className="text-lg font-normal text-white"> 0% Complete</p>
                                                 </div>
                                             </div>
                                         </CardContent>
@@ -382,7 +452,7 @@ const PropertyDetailsPage = () => {
                         <Card className="bg-stone-900 border-white/10 p-6">
                             <h2 className="text-lg mb-4">About This Property</h2>
                             <p className="text-gray-400 text-base leading-relaxed whitespace-pre-line">
-                                {property.description}
+                                {previewData?.description}
                             </p>
                         </Card>
 
@@ -392,15 +462,15 @@ const PropertyDetailsPage = () => {
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center bg-neutral-700 rounded-lg px-4 py-4">
                                     <p>Est. Monthly Rent</p>
-                                    <p className="font-medium">{property.monthlyRent}</p>
+                                    <p className="font-medium">{previewData?.monthlyRent}</p>
                                 </div>
                                 <div className="flex justify-between items-center bg-neutral-700 rounded-lg px-4 py-4">
                                     <p>Annual Return</p>
-                                    <p className="font-medium text-emerald-500">{property.annualReturn}</p>
+                                    <p className="font-medium text-emerald-500">{previewData?.annualReturn}</p>
                                 </div>
                                 <div className="flex justify-between items-center bg-neutral-700 rounded-lg px-4 py-4">
                                     <p>Value Appreciation</p>
-                                    <p className="font-medium text-yellow-400">{property.appreciation}</p>
+                                    <p className="font-medium text-yellow-400">{previewData?.appreciation}</p>
                                 </div>
                             </div>
                         </Card>
@@ -413,7 +483,7 @@ const PropertyDetailsPage = () => {
                             <h3 className="text-base mb-4">Location & Proximity</h3>
                             <div className="bg-zinc-800 rounded-xl overflow-hidden mb-4">
                                 <Image
-                                    src={property.mapImage}
+                                    src={previewData?.mapImage}
                                     alt="Location map"
                                     width={505}
                                     height={346}
@@ -462,4 +532,4 @@ const PropertyDetailsPage = () => {
     );
 };
 
-export default PropertyDetailsPage;
+export default PropertyPreviewPage;

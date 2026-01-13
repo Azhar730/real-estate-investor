@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import { RxDashboard } from "react-icons/rx";
 import { BiLogOut } from "react-icons/bi";
-import { DollarSign, LogOut, MapPin, Search, ShoppingCart, Target, User, MapPinned, TrendingUp } from "lucide-react";
+import { DollarSign, MapPin, Search, ShoppingCart, User, MapPinned, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";

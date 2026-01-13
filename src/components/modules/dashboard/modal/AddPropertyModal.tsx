@@ -18,6 +18,9 @@ import {
 import { Upload, X, ImagePlus, CircleCheckBig } from "lucide-react";
 import Image from "next/image";
 import { Controller } from "react-hook-form";
+import { Textarea } from "@/components/ui/textarea";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 // form validation schema (zod)
 const formSchema = z.object({
@@ -28,6 +31,7 @@ const formSchema = z.object({
     price: z.string().min(1, "Price is required"),
     size: z.string().min(1, "Size is required"),
     expectedROI: z.string().min(1, "Expected ROI is required"),
+    description: z.string().min(1, "Description is required!"),
     categories: z.array(z.string()).optional(),
 });
 
@@ -40,13 +44,15 @@ export default function AddPropertyModal({ onClose }: { onClose: () => void }) {
     const modalRef = useRef<HTMLDivElement>(null);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [formData, setFormData] = useState<FormData | null>(null);
+    const router = useRouter()
 
     const {
         register,
         handleSubmit,
         formState: { errors },
         reset,
-        control
+        control,
+        watch
     } = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -222,6 +228,18 @@ export default function AddPropertyModal({ onClose }: { onClose: () => void }) {
                                 </div>
                             </div>
 
+                            <div className="space-y-2">
+                                <Label className="text-white">Description</Label>
+                                <Textarea
+                                    {...register("description")}
+                                    placeholder="Property Description"
+                                    className="bg-stone-900 border-stone-700 text-white placeholder:text-gray-500"
+                                />
+                                {errors.description && (
+                                    <p className="text-red-500 text-sm">{errors.description.message}</p>
+                                )}
+                            </div>
+
                             {/* Upload Photos */}
                             <div className="space-y-2">
                                 <Label className="text-white">Upload Photos</Label>
@@ -316,6 +334,20 @@ export default function AddPropertyModal({ onClose }: { onClose: () => void }) {
                                     type="button"
                                     variant="outline"
                                     className="flex-1 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white"
+                                    onClick={() => {
+                                        // Preview-এ যাওয়ার আগে ডাটা সেভ করে রাখি
+                                        const previewData = {
+                                            ...watch(), // react-hook-form এর watch দিয়ে সব ফিল্ডের কারেন্ট ভ্যালু নেয়া
+                                            images: previews, // প্রিভিউ URL গুলো পাঠানো
+                                        };
+
+                                        // Next.js router দিয়ে query params-এ ডাটা পাঠানো
+                                        router.push(
+                                            `/dashboard/property-preview?previewData=${encodeURIComponent(
+                                                JSON.stringify(previewData)
+                                            )}`
+                                        );
+                                    }}
                                 >
                                     Preview Listing
                                 </Button>
@@ -330,9 +362,7 @@ export default function AddPropertyModal({ onClose }: { onClose: () => void }) {
                         </form>
                     </div>
                 </div>
-
             </div>
-
 
             {showConfirmModal && formData && (
                 <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-60 p-4">
@@ -341,6 +371,12 @@ export default function AddPropertyModal({ onClose }: { onClose: () => void }) {
                         <div className="p-6 border-b border-stone-700 flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 bg-emerald-600/20 rounded-full flex items-center justify-center">
+                                    <Image
+                                        src={'/turbo.svg'}
+                                        alt="turbo"
+                                        height={20}
+                                        width={20}
+                                    />
                                 </div>
                                 <h3 className="text-xl font-bold text-white">
                                     Publish Property Listing?
@@ -405,6 +441,12 @@ export default function AddPropertyModal({ onClose }: { onClose: () => void }) {
                                 className="flex-1 bg-emerald-600 hover:bg-emerald-500 gap-2"
                                 onClick={handlePublish}
                             >
+                                <Image
+                                    src={'/turbo.svg'}
+                                    alt="turbo"
+                                    height={16}
+                                    width={16}
+                                />
                                 Publish Now
                             </Button>
                         </div>
