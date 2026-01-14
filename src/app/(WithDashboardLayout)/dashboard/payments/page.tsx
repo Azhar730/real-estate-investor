@@ -4,6 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { paymentData } from "@/data/paymentData";
+import Link from "next/link";
 
 export default function PaymentSchedulePage() {
     return (
@@ -16,7 +17,7 @@ export default function PaymentSchedulePage() {
                 </div>
 
                 {/* Payment Cards */}
-                <div className="flex flex-col gap-4">
+                <Link href={'/dashboard/payments/1'} className="flex flex-col gap-4">
                     {paymentData.map((item, index) => (
                         <Card
                             key={index}
@@ -66,7 +67,7 @@ export default function PaymentSchedulePage() {
                             </CardContent>
                         </Card>
                     ))}
-                </div>
+                </Link>
             </div>
         </div>
     );
