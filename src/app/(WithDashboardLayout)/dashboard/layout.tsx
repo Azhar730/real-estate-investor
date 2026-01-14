@@ -11,8 +11,10 @@ import {
   Users,
   LogOut,
   BriefcaseMedical,
-  Pill,
   User2,
+  LucideMove,
+  Heart,
+  Banknote,
 } from "lucide-react";
 import { IoAdd } from "react-icons/io5";
 import Link from "next/link";
@@ -20,6 +22,8 @@ import { useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
+import { user } from "@/data/user";
+
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -28,7 +32,6 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const role = "agent"
 
   const handleLogout = async () => {
     Swal.fire({
@@ -63,55 +66,29 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const menuItems =
-    role === "agent"
+    user?.role === "agent"
       ? [
-          { icon: Home, text: "Dashboard", path: "/dashboard" },
-          { icon: BarChart3, text: "My Properties", path: "/dashboard/my-properties" },
-          { icon: User, text: "Profile", path: "/dashboard/my-profile" },
-          { icon: Settings, text: "Settings", path: "/dashboard/settings" },
-        ]
+        { icon: Home, text: "Dashboard", path: "/dashboard" },
+        { icon: BarChart3, text: "My Properties", path: "/dashboard/my-properties" },
+        { icon: Settings, text: "Messages", path: "/dashboard/message" },
+        { icon: User, text: "Profile & Settings", path: "/dashboard/profile-settings" },
+        { icon: User, text: "Payments", path: "/dashboard/payments" },
+      ]
       : [
-          { icon: Home, text: "Dashboard", path: "/dashboard" },
-          {
-            icon: BarChart3,
-            text: "Order Management",
-            path: "/dashboard/order-management",
-          },
-          { icon: BarChart3, text: "My Orders", path: "/dashboard/my-orders" },
-          {
-            icon: Users,
-            text: "User Management",
-            path: "/dashboard/user-management",
-          },
-          {
-            icon: BriefcaseMedical,
-            text: "Medicine Management",
-            path: "/dashboard/medicine-management",
-          },
-          {
-            icon: IoAdd,
-            text: "Add Medicine",
-            path: "/dashboard/add-medicine",
-          },
-          {
-            icon: User,
-            text: "Profile",
-            path: "/dashboard/my-profile",
-          },
-          {
-            icon: Settings,
-            text: "Settings",
-            path: "/dashboard/settings",
-          },
-        ];
+        { icon: Home, text: "Dashboard", path: "/dashboard" },
+        { icon: User, text: "Profile & Settings", path: "/dashboard/profile-settings" },
+        { icon: Settings, text: "Messages", path: "/dashboard/message" },
+        { icon: Heart, text: "Save", path: "/dashboard/save" },
+        { icon: Banknote, text: "Payments", path: "/dashboard/save" },
+
+      ];
 
   return (
     <div>
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#252525] border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#252525] border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between h-16 px-4 border-b">
           <Link
@@ -139,11 +116,10 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <Link
                 key={index}
                 href={item.path}
-                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-300 ${
-                  isActive
-                    ? "bg-emerald-800 text-white"
-                    : "text-emerald-400 hover:bg-emerald-800 hover:text-white"
-                }`}
+                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-300 ${isActive
+                  ? "bg-emerald-800 text-white"
+                  : "text-white hover:bg-emerald-800 hover:text-white"
+                  }`}
               >
                 <item.icon className="w-5 h-5 mr-3" />
                 {item.text}
@@ -178,13 +154,13 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
             {/* Right Section */}
             <div className="ml-auto flex items-center gap-4 relative" ref={dropdownRef}>
-             
+
               {/* Profile Dropdown */}
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                 className="flex items-center gap-2 px-2 py-1 hover:bg-emerald-700 rounded-full transition"
               >
-                <User2/>
+                <User2 />
               </button>
               <AnimatePresence>
                 {isProfileMenuOpen && (
