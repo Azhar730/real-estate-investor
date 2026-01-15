@@ -1,87 +1,143 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { GiTrophyCup } from "react-icons/gi";
-import { LayoutDashboard, Mail, Lock, Edit, Verified, CircleCheckBig, Trophy } from "lucide-react";
-import ProfileOverview from "@/components/modules/dashboard/profile/ProfileOverview";
-import ProfileContactInfo from "@/components/modules/dashboard/profile/ProfileContactInfo";
-import ProfileSecurity from "@/components/modules/dashboard/profile/ProfileSecurity";
-import Image from "next/image";
+import { LayoutDashboard, Mail, Lock, Trophy, Edit } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import BuyerProfileOverview from "./BuyerProfileOverView";
+import BuyerProfileContactInfo from "./BuyerProfileContactInfo";
+import BuyerProfileSecurity from "./BuyerProfileSecurity";
+import BuyerProfileProperty from "./BuyerProfileProperty";
+import { Button } from "@/components/ui/button";
+import BuyerProfileKYCDocuments from "./BuyerProfileKYCDocuments";
 
 export default function BuyerProfile() {
     return (
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
             <h1 className="text-xl font-semibold">My Profile</h1>
             <p className="text-sm text-gray-300 mb-6">Professional agent profile & verification</p>
 
-            <Tabs defaultValue="overview" className="grid grid-cols-6">
-                {/* Left Sidebar Tabs */}
-                <TabsList className="flex flex-col bg-[#2c2a2a] p-4 rounded-xl overflow-hidden w-56 min-w-56 h-fit shadow-sm">
+            <Tabs defaultValue="overview" className="w-full grid grid-cols-1 lg:grid-cols-5 gap-2 md:gap-4">
+                {/* Sidebar – horizontal scroll on mobile, fixed-width column on sm+ */}
+                <TabsList
+                    className="
+            w-full
+            col-span-1
+            flex flex-col
+            items-start
+            bg-[#2c2a2a] p-3 sm:p-4
+            rounded-xl
+            overflow-x-hidden
+            sm:overflow-hidden
+            h-auto sm:h-fit
+            shadow-sm gap-2 sm:gap-0
+            sm:sticky sm:top-4
+          "
+                >
                     <TabsTrigger
                         value="overview"
                         className="
-                        group relative w-full justify-start gap-3 px-5 py-3.5 text-left
-                        data-[state=inactive]:text-gray-400
-                        data-[state=active]:bg-emerald-700 data-[state=active]:text-white
-                        data-[state=active]:shadow-inner
-                        hover:bg-emerald-700/50 transition-colors
-                        border-l-4 border-transparent
-                        data-[state=active]:border-l-emerald-500
-                        "
+                        border-2
+                        w-full
+                        
+              group relative shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+              data-[state=inactive]:text-gray-400
+              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:shadow-inner
+              hover:bg-emerald-700/50 transition-colors
+              border-l-0 sm:border-l-4 
+              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
+              rounded-md sm:rounded-none
+            "
                     >
                         <LayoutDashboard size={18} className="shrink-0" />
                         <span className="font-medium">Overview</span>
                     </TabsTrigger>
 
                     <TabsTrigger
+                        value="kyc_documents"
+                        className="
+                        w-full
+              group relative flex-shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+              data-[state=inactive]:text-gray-400
+              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:shadow-inner
+              hover:bg-emerald-700/50 transition-colors
+              border-l-0 sm:border-l-4 border-transparent
+              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
+              rounded-md sm:rounded-none
+            "
+                    >
+                        <LayoutDashboard size={18} className="shrink-0" />
+                        <span className="font-medium">KYC Documents</span>
+                    </TabsTrigger>
+
+                    <TabsTrigger
                         value="contact"
                         className="
-                                    group relative w-full justify-start gap-3 px-5 py-3.5 text-left
-                                    data-[state=inactive]:text-gray-400
-                                    data-[state=active]:bg-emerald-700 data-[state=active]:text-white
-                                    data-[state=active]:shadow-inner
-                                    hover:bg-emerald-700/50 transition-colors
-                                    border-l-4 border-transparent
-                                    data-[state=active]:border-l-emerald-500
-    "
+                        w-full
+              group relative flex-shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+              data-[state=inactive]:text-gray-400
+              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:shadow-inner
+              hover:bg-emerald-700/50 transition-colors
+              border-l-0 sm:border-l-4 border-transparent
+              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
+              rounded-md sm:rounded-none
+            "
                     >
                         <Mail size={18} className="shrink-0" />
                         <span className="font-medium">Contact Info</span>
                     </TabsTrigger>
 
                     <TabsTrigger
+                        value="property"
+                        className="
+                        w-full
+              group relative flex-shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+              data-[state=inactive]:text-gray-400
+              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:shadow-inner
+              hover:bg-emerald-700/50 transition-colors
+              border-l-0 sm:border-l-4 border-transparent
+              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
+              rounded-md sm:rounded-none
+            "
+                    >
+                        <Mail size={18} className="shrink-0" />
+                        <span className="font-medium">Property</span>
+                    </TabsTrigger>
+
+                    <TabsTrigger
                         value="security"
                         className="
-                                group relative w-full justify-start gap-3 px-5 py-3.5 text-left
-                                data-[state=inactive]:text-gray-400
-                                data-[state=active]:bg-emerald-700 data-[state=active]:text-white
-                                data-[state=active]:shadow-inner
-                                hover:bg-emerald-700/50 transition-colors
-                                border-l-4 border-transparent
-                                data-[state=active]:border-l-emerald-500
-    "
+                        w-full
+              group relative shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+              data-[state=inactive]:text-gray-400
+              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:shadow-inner
+              hover:bg-emerald-700/50 transition-colors
+              border-l-0 sm:border-l-4 border-transparent
+              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
+              rounded-md sm:rounded-none
+            "
                     >
                         <Lock size={18} className="shrink-0" />
                         <span className="font-medium">Security</span>
                     </TabsTrigger>
                 </TabsList>
 
-                {/* Right Content Area */}
-                <div className="col-span-5">
-                    {/* Common Profile Header - Always Visible */}
-                    <div className="bg-gray-900/90 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
-                        {/* Top Profile Row */}
-                        <div className="p-5 md:p-6 flex items-center justify-between gap-4">
-                            <div className="flex items-center gap-4">
-                                {/* Profile Photo */}
-                                <div className="relative">
+                {/* Main content area */}
+                <div className="col-span-1 sm:col-span-4 w-full">
+                    {/* Profile Header – always visible */}
+                    <div className="bg-[#2c2a2a] backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl">
+                        <div className="p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div className="flex items-center gap-4 w-full sm:w-auto">
+                                <div className="relative shrink-0">
                                     <img
-                                        src="/nayan-dhali.jpg" // replace with your actual path
+                                        src="/nayan-dhali.jpg"
                                         alt="Ahmed Al-Mansour"
-                                        className="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2 border-emerald-500/40"
+                                        className="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover"
                                     />
-                                    {/* Small camera icon overlay - optional */}
                                     <div className="absolute -bottom-1 -right-1 bg-emerald-900 p-1 rounded-full">
                                         <svg className="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -90,27 +146,23 @@ export default function BuyerProfile() {
                                     </div>
                                 </div>
 
-                                <div>
-                                    <h2 className="text-lg md:text-xl font-semibold text-white">Ahmed Al-Mansour</h2>
+                                <div className="min-w-0">
+                                    <h2 className="text-lg md:text-xl font-semibold text-white truncate">Ahmed Al-Mansour</h2>
 
-                                    {/* Badges + ID + Location */}
                                     <div className="flex flex-wrap items-center gap-2.5 mt-1.5">
-                                        <div className="flex items-center gap-1.5 text-sm">
+                                        <div className="flex items-center gap-1.5 text-sm whitespace-nowrap">
                                             <span className="text-gray-400">National ID:</span>
                                             <span className="text-gray-200 font-medium">1234567890</span>
                                         </div>
 
-                                        <div className="flex items-center gap-2">
-                                            <button className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-900/60 text-blue-300 text-xs font-medium rounded-full border border-blue-700/40">
-                                                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                                </svg>
-                                                Nafath Verified
-                                            </button>
-                                        </div>
+                                        <button className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-900/60 text-blue-300 text-xs font-medium rounded-full border border-blue-700/40 shrink-0">
+                                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                            </svg>
+                                            Nafath Verified
+                                        </button>
                                     </div>
 
-                                    {/* Location */}
                                     <div className="flex items-center gap-1.5 mt-1 text-sm text-gray-400">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -121,50 +173,66 @@ export default function BuyerProfile() {
                                 </div>
                             </div>
 
-                            {/* Edit Button */}
-                            <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-800/70 hover:bg-gray-700 rounded-lg border border-gray-700 transition-colors">
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
-                                Edit Profile
-                            </button>
+                            <Button
+                                variant="outline"
+                                className="text-white flex items-center gap-2 bg-gray-500/20 border-none hover:bg-emerald-700 mt-3 sm:mt-0 w-full sm:w-auto"
+                            >
+                                <Edit size={16} /> <span>Edit Profile</span>
+                            </Button>
                         </div>
 
-                        {/* Golden Visa Progress Section - attached image এর মতো gradient background + trophy + bar */}
-                        <div className="bg-linear-to-r from-emerald-800/50 via-teal-950/60 to-yellow-950/40 px-5 md:px-6 py-4 border-t border-gray-800">
-                            <div className="flex items-center justify-between mb-2">
-                                <div className="flex items-center gap-2.5">
-                                    {/* Replaced GiTrophyCup with lucide-react Trophy */}
-                                    <Trophy className="text-yellow-400 font-bold text-lg w-6 h-6" />
-                                    <span className="font-medium text-white">Golden Visa Progress</span>
+                        {/* Golden Visa Progress */}
+                        <div className="px-4 sm:px-6">
+                            <div className="bg-linear-to-r from-emerald-800/50  to-yellow-600/40 rounded-xl px-4 sm:px-6 py-4 border-t border-gray-800">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
+                                    <div className="flex items-center gap-2.5">
+                                        <Trophy className="text-yellow-400 w-6 h-6" />
+                                        <span className="font-medium text-white">Golden Visa Progress</span>
+                                    </div>
+                                    <span className="text-yellow-400 font-semibold">87.5%</span>
                                 </div>
-                                <span className="text-yellow-400 font-semibold">87.5%</span>
+
+                                <Progress
+                                    value={87.5}
+                                    className="h-3 bg-gray-800/70 rounded-full overflow-hidden [&>div]:bg-linear-to-r [&>div]:from-emerald-500 [&>div]:via-lime-400 [&>div]:to-yellow-400"
+                                />
+
+                                <div className="mt-2.5 flex items-center gap-2 text-sm">
+                                    <Trophy className="w-4 h-4 text-emerald-300" />
+                                    <span className="text-emerald-300 font-medium">Golden Visa Eligible!</span>
+                                </div>
                             </div>
+                        </div>
 
-                            {/* Progress Bar - replaced custom div with Shadcn Progress */}
-                            <Progress
-                                value={87.5}
-                                className="h-3 bg-gray-800/70 rounded-full overflow-hidden [&>div]:bg-linear-to-r [&>div]:from-emerald-500 [&>div]:via-lime-400 [&>div]:to-yellow-400"
-                            />
-
-                            {/* Eligibility Message */}
-                            <div className="mt-2.5 flex items-center gap-2 text-sm">
-                                {/* Re-using Trophy icon for consistency */}
-                                <Trophy className="w-4 h-4 text-emerald-300" />
-                                <span className="text-emerald-300 font-medium">Golden Visa Eligible!</span>
+                        <div className="px-4 sm:px-6 pb-4">
+                            <div className="bg-[#434141] p-3 rounded-lg mt-4 flex flex-col sm:flex-row justify-between text-sm gap-3">
+                                <div>
+                                    <p className="text-gray-400">FAL License</p>
+                                    <p>FAL-RYD-2023-1547</p>
+                                </div>
+                                <div className="sm:text-right">
+                                    <p className="text-gray-300">Expires</p>
+                                    <p>2025-12-31</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Tab-Specific Content */}
+                    {/* Tab contents */}
                     <TabsContent value="overview" className="mt-6">
-                        <ProfileOverview />
+                        <BuyerProfileOverview />
+                    </TabsContent>
+                    <TabsContent value="kyc_documents" className="mt-6">
+                        <BuyerProfileKYCDocuments />
                     </TabsContent>
                     <TabsContent value="contact" className="mt-6">
-                        <ProfileContactInfo />
+                        <BuyerProfileContactInfo />
                     </TabsContent>
                     <TabsContent value="security" className="mt-6">
-                        <ProfileSecurity />
+                        <BuyerProfileSecurity />
+                    </TabsContent>
+                    <TabsContent value="property" className="mt-6">
+                        <BuyerProfileProperty />
                     </TabsContent>
                 </div>
             </Tabs>

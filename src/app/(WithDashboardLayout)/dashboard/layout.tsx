@@ -72,14 +72,13 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         { icon: BarChart3, text: "My Properties", path: "/dashboard/my-properties" },
         { icon: Settings, text: "Messages", path: "/dashboard/message" },
         { icon: User, text: "Profile & Settings", path: "/dashboard/profile-settings" },
-        { icon: User, text: "Payments", path: "/dashboard/payments" },
+        { icon: Banknote, text: "Payments", path: "/dashboard/payments" },
       ]
       : [
-        { icon: Home, text: "Dashboard", path: "/dashboard" },
         { icon: User, text: "Profile & Settings", path: "/dashboard/profile-settings" },
         { icon: Settings, text: "Messages", path: "/dashboard/message" },
         { icon: Heart, text: "Save", path: "/dashboard/save" },
-        { icon: Banknote, text: "Payments", path: "/dashboard/save" },
+        { icon: Banknote, text: "Payments", path: "/dashboard/payments" },
 
       ];
 
