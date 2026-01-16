@@ -1,70 +1,32 @@
-import React from 'react';
-import { Check, Clock, Lock, Calendar, FileText, Download, Upload } from 'lucide-react';
+import { Lock, Calendar, FileText, Download, Upload, CircleAlert, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
+import { milestones } from '@/data/milestoneData';
 
 const PaymentMilestones = () => {
-  const milestones = [
-    {
-      id: 1,
-      status: 'completed',
-      title: 'Booking Deposit (10%)',
-      amount: '10% • SAR 400,000',
-      condition: 'Condition: On Request',
-      paidDate: '2024-11-15',
-      verifiedBy: 'Verified By: Admin - Ahmad Al Saud',
-      verifiedDate: '2024-11-16',
-      showReceipt: true,
-    },
-    {
-      id: 2,
-      status: 'completed',
-      title: '20% Construction Completion',
-      amount: '20% • SAR 800,000',
-      condition: 'Condition: 20% Work Completion',
-      paidDate: '2025-01-10',
-      verifiedBy: 'Verified By: Admin - Ahmad Al Saud',
-      verifiedDate: '2025-01-11',
-      showReceipt: true,
-    },
-    {
-      id: 3,
-      status: 'pending',
-      title: '40% Construction Completion',
-      amount: '30% • SAR 1,200,000',
-      condition: 'Condition: 40% Required',
-      dueDate: '2025-06-30',
-      showUpload: true,
-    },
-    {
-      id: 4,
-      status: 'upcoming',
-      title: '60% Construction Completion',
-      amount: '20% • SAR 800,000',
-      condition: 'Condition: 60% Required',
-      dueDate: '2025-10-15',
-    },
-  ];
-
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
         return (
-          <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-            <Check className="w-5 h-5 text-white" />
-          </div>
+          <Image
+            src="/verified-badge.svg"
+            alt="verified svg"
+            width={45}
+            height={45}
+          />
         );
       case 'pending':
         return (
-          <div className="w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
-            <Clock className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 rounded-full bg-yellow-500 shadow-2xl flex items-center justify-center">
+            <CircleAlert className="w-5 h-5 text-black" />
           </div>
         );
       case 'upcoming':
         return (
-          <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
-            <Lock className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center p-2">
+            <Lock className="w-5 h-5 text-gray-300" />
           </div>
         );
       default:
@@ -75,105 +37,105 @@ const PaymentMilestones = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <Badge className="bg-green-600 hover:bg-green-700">Completed</Badge>;
+        return <Badge className="bg-emerald-400/20 hover:bg-emerald-400/40">Completed</Badge>;
       case 'pending':
         return (
-          <Badge className="bg-yellow-600 hover:bg-yellow-700">Pending - Action Required</Badge>
+          <Badge className="bg-yellow-400/15 hover:bg-yellow-400/20 text-yellow-400 flex items-center gap-1">
+            <CircleAlert className="w-3 h-3" /> Pending Your Review
+          </Badge>
         );
       case 'upcoming':
-        return <Badge className="bg-blue-600 hover:bg-blue-700">Upcoming</Badge>;
+        return <Badge className="bg-blue-600/60 hover:bg-blue-700">Upcoming</Badge>;
       default:
         return null;
     }
   };
 
   return (
-    <div className="min-h-screen  mt-6  p-6">
-      <div className=" ">
-        <h1 className="text-2xl font-bold text-white mb-6">Payment Milestones</h1>
+    <div className="mt-6 px-2 sm:px-4 lg:px-6">
+      <h1 className="text-2xl font-bold text-white mb-6">Payment Milestones</h1>
 
-        <div className="relative">
-          <div className="space-y-6">
-            {milestones.map(milestone => (
-              <div key={milestone.id} className="relative pl-16 min-w-4xl">
-                {/* Status icon */}
-                <div
-                  className="absolute left-4 top-0 bottom-0 w-0.5 mt-8 mb-8"
-                  style={{
-                    background:
-                      'linear-gradient(to top, transparent 0%, #e7dcdc22 70%, #ffffff55 50%, #fafafa22 20%, transparent 100%)',
-                  }}
-                ></div>
+      <div className="relative space-y-6">
+        {milestones.map((milestone) => (
+          <div
+            key={milestone.id}
+            className="relative pl-12 sm:pl-16"
+          >
+            {/* Timeline line */}
+            <div
+              className="absolute left-3 sm:left-4 top-0 bottom-0 w-px"
+              style={{
+                background:
+                  'linear-gradient(to top, transparent 0%, #e7dcdc22 70%, #ffffff55 50%, #fafafa22 20%, transparent 100%)',
+              }}
+            />
 
-                <div className="absolute left-0 top-6">{getStatusIcon(milestone.status)}</div>
+            {/* Status icon */}
+            <div className="absolute left-0 top-6">{getStatusIcon(milestone.status)}</div>
 
-                <Card className="bg-[#1E1E1E] border-gray-700">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-lg font-semibold text-white mb-1">{milestone.title}</h3>
-                        <p className="text-sm text-gray-400 mb-1">{milestone.amount}</p>
-                        <p className="text-xs text-gray-500">{milestone.condition}</p>
-                      </div>
-                      {getStatusBadge(milestone.status)}
+            <Card className={milestone.status === 'pending' ? "bg-yellow-300/10 border-2 border-yellow-400/70" : "bg-[#1E1E1E]"}>
+              <CardContent className="px-4 sm:px-6 py-4">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">{milestone.title}</h3>
+                    <p className="text-sm text-gray-400 mb-1">{milestone.amount}</p>
+                    <p className="text-xs text-gray-500">{milestone.condition}</p>
+                  </div>
+                  {getStatusBadge(milestone.status)}
+                </div>
+
+                {milestone.paidDate && (
+                  <div className="flex items-center text-sm text-gray-400 mb-2">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>Paid on {milestone.paidDate}</span>
+                  </div>
+                )}
+
+                {milestone.verifiedBy && (
+                  <div className="border border-emerald-400/40 rounded-md p-2 my-4 bg-emerald-400/10">
+                    <div className="flex items-center text-sm text-green-500">
+                      <Shield className="w-4 h-4 mr-2" />
+                      <span>{milestone.verifiedBy}</span>
                     </div>
-
-                    {milestone.paidDate && (
-                      <div className="flex items-center text-sm text-gray-400 mb-2">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        <span>Paid on {milestone.paidDate}</span>
-                      </div>
-                    )}
-
-                    {milestone.verifiedBy && (
-                      <div className="flex items-center text-sm text-green-500 mb-4">
-                        <Check className="w-4 h-4 mr-2" />
-                        <span>{milestone.verifiedBy}</span>
-                      </div>
-                    )}
-
                     {milestone.verifiedDate && (
-                      <div className="text-xs text-gray-500 mb-4">{milestone.verifiedDate}</div>
+                      <div className="text-xs text-gray-400 mt-1">{milestone.verifiedDate}</div>
                     )}
+                  </div>
+                )}
 
-                    {milestone.dueDate && (
-                      <div className="flex items-center text-sm text-gray-400 mb-4">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        <span>Due Date: {milestone.dueDate}</span>
-                      </div>
-                    )}
+                {milestone.dueDate && (
+                  <div className="flex items-center text-sm text-gray-400 mb-4">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>Due Date: {milestone.dueDate}</span>
+                  </div>
+                )}
 
-                    {milestone.showReceipt && (
-                      <div className="flex gap-3">
-                        <Button
-                          variant="outline"
-                          className="flex items-center gap-2 border-gray-600 text-gray-300 hover:bg-gray-700"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View Receipt
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="flex items-center gap-2 border-gray-600 text-gray-300 hover:bg-gray-700"
-                        >
-                          <Download className="w-4 h-4" />
-                          Download Receipt
-                        </Button>
-                      </div>
-                    )}
+                {milestone.showReceipt && (
+                  <div className="flex flex-wrap gap-3 mb-2">
+                    <Button variant="outline" className="flex items-center gap-2 bg-[#D1D5DC]/10 hover:bg-[#D1D5DC]/20 cursor-pointer text-gray-300 border-none">
+                      <FileText className="w-4 h-4" /> View Receipt
+                    </Button>
+                    <Button variant="outline" className="flex items-center gap-2 bg-[#D1D5DC]/10 hover:bg-[#D1D5DC]/20 cursor-pointer text-gray-300 border-none">
+                      <Download className="w-4 h-4" /> Download Receipt
+                    </Button>
+                  </div>
+                )}
 
-                    {milestone.showUpload && (
-                      <Button className="flex items-center gap-2 bg-green-600 hover:bg-green-700">
-                        <Upload className="w-4 h-4" />
-                        Upload Receipt
-                      </Button>
-                    )}
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+                {milestone.showUpload && (
+                  <div className="flex flex-wrap gap-4">
+                    <Button className="flex items-center gap-2 border-yellow-400/80 border bg-yellow-600/20 hover:bg-yellow-600/40">
+                      <Upload className="w-4 h-4 text-yellow-400" /> Upload Receipt
+                      <CircleAlert className="text-yellow-400" />
+                    </Button>
+                    <Button className="flex items-center gap-2 border-emerald-400/80 border bg-emerald-600/20 hover:bg-green-700">
+                      <FileText className="w-4 h-4 text-emerald-400" /> Mark as Received
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function PaymentSchedulePage() {
     return (
-        <div className="text-gray-100 p-6 md:p-6">
+        <div className="text-gray-100">
             <div className="max-w-full mx-auto">
                 {/* Header */}
                 <div className="mb-8">

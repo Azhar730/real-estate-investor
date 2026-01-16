@@ -12,41 +12,44 @@ import BuyerProfileKYCDocuments from "./BuyerProfileKYCDocuments";
 
 export default function BuyerProfile() {
     return (
-        <div className="p-4 sm:p-6">
+        <div className="px-2 sm:px-4">
             <h1 className="text-xl font-semibold">My Profile</h1>
             <p className="text-sm text-gray-300 mb-6">Professional agent profile & verification</p>
 
-            <Tabs defaultValue="overview" className="w-full grid grid-cols-1 lg:grid-cols-5 gap-2 md:gap-4">
+            <Tabs defaultValue="overview" className="flex flex-col 
+            lg:grid lg:grid-cols-6 gap-6">
                 {/* Sidebar – horizontal scroll on mobile, fixed-width column on sm+ */}
                 <TabsList
                     className="
-            w-full
-            col-span-1
-            flex flex-col
-            items-start
-            bg-[#2c2a2a] p-3 sm:p-4
+            flex lg:flex-col
+            bg-[#2c2a2a]
+            p-4
             rounded-xl
-            overflow-x-hidden
-            sm:overflow-hidden
-            h-auto sm:h-fit
-            shadow-sm gap-2 sm:gap-0
-            sm:sticky sm:top-4
+            overflow-x-auto lg:overflow-hidden
+            w-full lg:w-56 lg:min-w-56
+            h-fit
+            shadow-sm
+            gap-1
           "
                 >
                     <TabsTrigger
                         value="overview"
                         className="
-                        border-2
-                        w-full
-                        
-              group relative shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+                        group relative
+              w-full
+              justify-start
+              gap-3
+              px-5 py-3.5
+              text-left
+              whitespace-nowrap
               data-[state=inactive]:text-gray-400
-              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:bg-emerald-700
+              data-[state=active]:text-white
               data-[state=active]:shadow-inner
-              hover:bg-emerald-700/50 transition-colors
-              border-l-0 sm:border-l-4 
-              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
-              rounded-md sm:rounded-none
+              hover:bg-emerald-700/50
+              transition-colors
+              border-l-4 border-transparent
+              data-[state=active]:border-l-emerald-500
             "
                     >
                         <LayoutDashboard size={18} className="shrink-0" />
@@ -56,15 +59,21 @@ export default function BuyerProfile() {
                     <TabsTrigger
                         value="kyc_documents"
                         className="
-                        w-full
-              group relative flex-shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+                        group relative
+              w-full
+              justify-start
+              gap-3
+              px-5 py-3.5
+              text-left
+              whitespace-nowrap
               data-[state=inactive]:text-gray-400
-              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:bg-emerald-700
+              data-[state=active]:text-white
               data-[state=active]:shadow-inner
-              hover:bg-emerald-700/50 transition-colors
-              border-l-0 sm:border-l-4 border-transparent
-              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
-              rounded-md sm:rounded-none
+              hover:bg-emerald-700/50
+              transition-colors
+              border-l-4 border-transparent
+              data-[state=active]:border-l-emerald-500
             "
                     >
                         <LayoutDashboard size={18} className="shrink-0" />
@@ -74,15 +83,21 @@ export default function BuyerProfile() {
                     <TabsTrigger
                         value="contact"
                         className="
-                        w-full
-              group relative flex-shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+                        group relative
+              w-full
+              justify-start
+              gap-3
+              px-5 py-3.5
+              text-left
+              whitespace-nowrap
               data-[state=inactive]:text-gray-400
-              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:bg-emerald-700
+              data-[state=active]:text-white
               data-[state=active]:shadow-inner
-              hover:bg-emerald-700/50 transition-colors
-              border-l-0 sm:border-l-4 border-transparent
-              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
-              rounded-md sm:rounded-none
+              hover:bg-emerald-700/50
+              transition-colors
+              border-l-4 border-transparent
+              data-[state=active]:border-l-emerald-500
             "
                     >
                         <Mail size={18} className="shrink-0" />
@@ -92,15 +107,21 @@ export default function BuyerProfile() {
                     <TabsTrigger
                         value="property"
                         className="
-                        w-full
-              group relative flex-shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+                        group relative
+              w-full
+              justify-start
+              gap-3
+              px-5 py-3.5
+              text-left
+              whitespace-nowrap
               data-[state=inactive]:text-gray-400
-              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:bg-emerald-700
+              data-[state=active]:text-white
               data-[state=active]:shadow-inner
-              hover:bg-emerald-700/50 transition-colors
-              border-l-0 sm:border-l-4 border-transparent
-              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
-              rounded-md sm:rounded-none
+              hover:bg-emerald-700/50
+              transition-colors
+              border-l-4 border-transparent
+              data-[state=active]:border-l-emerald-500
             "
                     >
                         <Mail size={18} className="shrink-0" />
@@ -110,15 +131,21 @@ export default function BuyerProfile() {
                     <TabsTrigger
                         value="security"
                         className="
-                        w-full
-              group relative shrink-0 sm:w-full justify-start gap-3 px-4 sm:px-5 py-3 sm:py-3.5 text-left
+                        group relative
+              w-full
+              justify-start
+              gap-3
+              px-5 py-3.5
+              text-left
+              whitespace-nowrap
               data-[state=inactive]:text-gray-400
-              data-[state=active]:bg-emerald-700 data-[state=active]:text-white
+              data-[state=active]:bg-emerald-700
+              data-[state=active]:text-white
               data-[state=active]:shadow-inner
-              hover:bg-emerald-700/50 transition-colors
-              border-l-0 sm:border-l-4 border-transparent
-              data-[state=active]:border-l-0 sm:data-[state=active]:border-l-emerald-500
-              rounded-md sm:rounded-none
+              hover:bg-emerald-700/50
+              transition-colors
+              border-l-4 border-transparent
+              data-[state=active]:border-l-emerald-500
             "
                     >
                         <Lock size={18} className="shrink-0" />
@@ -127,12 +154,12 @@ export default function BuyerProfile() {
                 </TabsList>
 
                 {/* Main content area */}
-                <div className="col-span-1 sm:col-span-4 w-full">
+                <div className="lg:col-span-5 w-full">
                     {/* Profile Header – always visible */}
-                    <div className="bg-[#2c2a2a] backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl">
-                        <div className="p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div className="flex items-center gap-4 w-full sm:w-auto">
-                                <div className="relative shrink-0">
+                    <div className="bg-[#2c2a2a] p-6 rounded-lg">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div className="flex items-center space-x-4">
+                                <div className="relative">
                                     <img
                                         src="/nayan-dhali.jpg"
                                         alt="Ahmed Al-Mansour"

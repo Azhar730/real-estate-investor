@@ -1,6 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Clock, DollarSign, Hammer } from 'lucide-react';
 import Image from 'next/image';
 import { paymentData } from '@/data/paymentData';
@@ -66,20 +65,20 @@ export default function PaymentOverview() {
                     <CardContent className="p-5 space-y-1">
                         <p className=" flex items-center ">
                             {' '}
-                            <DollarSign size={16} /> <span className="text-lg"> Total Price</span>
+                            <DollarSign size={16} className='text-emerald-600'/> <span className="text-lg"> Total Price</span>
                         </p>
                         <p className="text-lg font-semibold">SAR 4,200,000</p>
                     </CardContent>
                 </Card>
 
                 {/* Verified Payments */}
-                <Card className="border-[#006C35] bg-[#434141] border-2">
+                <Card className=" bg-emerald-800/20">
                     <CardContent className="p-5 space-y-2">
                         <div className="flex items-center gap-2 text-green-600">
                             <CheckCircle size={18} className="text-[#006C35]" />
                             <p className="text-lg text-white">Verified Payments</p>
                         </div>
-                        <p className="text-lg font-semibold text-[#006C35]">1/7</p>
+                        <p className="text-lg font-semibold text-[#006C35]">1 / 7</p>
                     </CardContent>
                 </Card>
 

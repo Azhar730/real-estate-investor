@@ -79,7 +79,7 @@ html {
 
 
 .dark {
-  --background: #09090B;
+  --background: #0D0D0D;
   --foreground: #ffffff;
 
   --card: #201b1e;
@@ -114,6 +114,16 @@ html {
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.1);
   --sidebar-ring: oklch(0.62 0.22 262);
+}
+
+/* hide scrollbar but keep scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE */
+  scrollbar-width: none;     /* Firefox */
 }
 
 @layer base {

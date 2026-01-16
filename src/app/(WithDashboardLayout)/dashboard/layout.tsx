@@ -201,7 +201,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         </header>
 
         {/* Page Content */}
-        <main className="py-4 px-6 lg:px-2 mt-12 bg-[#0D0D0D]">{children}</main>
+        <main className="py-4 px-6 lg:px-6 lg:py-8 mt-12 bg-[#0D0D0D]">{children}</main>
       </div>
 
       {/* Overlay */}
