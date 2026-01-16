@@ -6,7 +6,7 @@ import { Autoplay, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { propertyData } from '@/data/propertyData';
-import PropertyCard from './PropertyCard';
+import PropertyCard from '../dashboard/property/PropertyCard';
 
 const Banner = () => {
   return (

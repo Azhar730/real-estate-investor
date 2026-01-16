@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { propertyData } from "@/data/propertyData";
 import { Check, Shield, Calendar, Lock, CircleCheckBig } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import PropertyCard from "../../home/PropertyCard";
+import PropertyCard from "../property/PropertyCard";
 import { Autoplay, Mousewheel } from "swiper/modules";
 
 export default function BuyerProfileProperty() {

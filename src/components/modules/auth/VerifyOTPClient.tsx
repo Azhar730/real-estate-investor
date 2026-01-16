@@ -61,8 +61,8 @@ export default function VerifyOTPClient() {
             localStorage.removeItem("pendingEmail");
 
             if (user.verified) {
-                router.push("/");
-                toast.success("Login successfull!")
+                router.push("/login");
+                toast.success("Verification successfull!")
             } else {
                 router.push("/login");
                 toast.success("Verification successfull!")

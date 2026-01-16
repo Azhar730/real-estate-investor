@@ -14,6 +14,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Input } from "../ui/input";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const pathName = usePathname();
@@ -23,8 +24,8 @@ const Navbar = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavOpened, setIsNavOpened] = useState(false);
-  const isLoggedIn = true;
-
+  // const currentUser = localStorage.getItem("currentUser");
+  const isLoggedIn = false
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
   };
@@ -48,8 +49,10 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-    console.log("Logged out");
-  };
+  localStorage.clear();
+  router.push('/login')
+  toast.success("Logout successful!");
+};
 
   return (
       <>
@@ -161,9 +164,9 @@ const Navbar = () => {
                         <Avatar size="large" icon={<UserOutlined />} />
                         <h3 className="font-medium text-black">Azhar Mahmud</h3>
                       </div>
-                      <button onClick={() => router.push("/dashboard/my-profile")} className="w-full flex items-center hover:bg-blue-50 gap-3 px-4 py-2 mt-2 text-sm text-black">
+                      {/* <button onClick={() => router.push("/dashboard/my-profile")} className="w-full flex items-center hover:bg-blue-50 gap-3 px-4 py-2 mt-2 text-sm text-black">
                         <FiUser className="h-4 w-4 text-main" /> My Profile
-                      </button>
+                      </button> */}
                       <button onClick={() => router.push("/dashboard")} className="w-full flex items-center hover:bg-blue-50 gap-3 px-4 py-2 text-sm text-black">
                         <RxDashboard className="h-4 w-4 text-main" /> Dashboard
                       </button>

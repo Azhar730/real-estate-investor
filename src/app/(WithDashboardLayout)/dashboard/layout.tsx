@@ -5,16 +5,13 @@ import {
   Menu,
   X,
   Home,
-  Settings,
-  BarChart3,
   User,
-  Users,
-  LogOut,
-  BriefcaseMedical,
-  User2,
-  LucideMove,
   Heart,
   Banknote,
+  MessageSquare,
+  FileText,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { IoAdd } from "react-icons/io5";
 import Link from "next/link";
@@ -23,7 +20,7 @@ import Swal from "sweetalert2";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
 import { user } from "@/data/user";
-
+import Image from "next/image";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,7 +28,6 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-
 
   const handleLogout = async () => {
     Swal.fire({
@@ -56,7 +52,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
         dropdownRef.current &&
-        dropdownRef.current && !dropdownRef.current.contains(e.target as Node)
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
       ) {
         setIsProfileMenuOpen(false);
       }
@@ -68,33 +65,47 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const menuItems =
     user?.role === "agent"
       ? [
-        { icon: Home, text: "Dashboard", path: "/dashboard" },
-        { icon: BarChart3, text: "My Properties", path: "/dashboard/my-properties" },
-        { icon: Settings, text: "Messages", path: "/dashboard/message" },
-        { icon: User, text: "Profile & Settings", path: "/dashboard/profile-settings" },
-        { icon: Banknote, text: "Payments", path: "/dashboard/payments" },
-      ]
+          { icon: Home, text: "Dashboard", path: "/dashboard" },
+          {
+            icon: FileText,
+            text: "My Properties",
+            path: "/dashboard/my-properties",
+          },
+          { icon: MessageSquare, text: "Messages", path: "/dashboard/message" },
+          {
+            icon: User,
+            text: "Profile & Settings",
+            path: "/dashboard/profile-settings",
+          },
+          { icon: Banknote, text: "Payments", path: "/dashboard/payments" },
+        ]
       : [
-        { icon: User, text: "Profile & Settings", path: "/dashboard/profile-settings" },
-        { icon: Settings, text: "Messages", path: "/dashboard/message" },
-        { icon: Heart, text: "Save", path: "/dashboard/save" },
-        { icon: Banknote, text: "Payments", path: "/dashboard/payments" },
-
-      ];
+          { icon: Home, text: "Dashboard", path: "/dashboard" },
+          {
+            icon: User,
+            text: "Profile & Settings",
+            path: "/dashboard/profile-settings",
+          },
+          { icon: MessageSquare, text: "Messages", path: "/dashboard/message" },
+          { icon: Heart, text: "Save", path: "/dashboard/save" },
+          { icon: Banknote, text: "Payments", path: "/dashboard/payments" },
+        ];
 
   return (
     <div>
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#252525] border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#252525] border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="flex items-center justify-between h-16 px-4 border-b">
           <Link
             href="/"
-            className="flex items-center gap-x-2 text-xl font-semibold text-emerald-400"
+            className="flex items-center gap-x-1 text-lg font-semibold"
           >
-            <h1>Sakk</h1>
+            <Image src={'/sakk.png'} alt="sakk" height={45} width={45}/>
+            Sakk The Digital Seal
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -115,10 +126,11 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <Link
                 key={index}
                 href={item.path}
-                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-300 ${isActive
-                  ? "bg-emerald-800 text-white"
-                  : "text-white hover:bg-emerald-800 hover:text-white"
-                  }`}
+                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-300 ${
+                  isActive
+                    ? "bg-emerald-800 text-white"
+                    : "text-white hover:bg-emerald-800 hover:text-white"
+                }`}
               >
                 <item.icon className="w-5 h-5 mr-3" />
                 {item.text}
@@ -127,15 +139,27 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           })}
         </nav>
 
-        {/* Logout Button */}
-        <div className="p-4 fixed bottom-2 w-full">
-          <button
-            onClick={handleLogout}
-            className="flex cursor-pointer items-center px-4 py-3 text-sm rounded-lg bg-emerald-800 text-white hover:bg-emerald-900 w-full"
-          >
-            <LogOut className="w-5 h-5 mr-3" />
-            Logout
-          </button>
+        {/* User */}
+        <div className="p-4 fixed bottom-2 w-full bg-[#1E1E1E]">
+          <div className="flex cursor-pointer gap-2 px-4 py-3 text-sm rounded-lg text-white w-full">
+            <Image
+              src={"/nayan-dhali.jpg"}
+              alt="nayan-dhali"
+              height={50}
+              width={50}
+              className="rounded-full"
+            />
+            <div className="flex items-center gap-2">
+              <div>
+                <h1 className="text-xl flex">Nayan</h1>
+                <p>nayan@gmail.com</p>
+              </div>
+              <div>
+                <ChevronUp className="size-5 text-zinc-500"/>
+                <ChevronDown className="size-5 text-zinc-500" />
+              </div>
+            </div>
+          </div>
         </div>
       </aside>
 
@@ -152,14 +176,16 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
             </button>
 
             {/* Right Section */}
-            <div className="ml-auto flex items-center gap-4 relative" ref={dropdownRef}>
-
+            <div
+              className="ml-auto flex items-center gap-4 relative"
+              ref={dropdownRef}
+            >
               {/* Profile Dropdown */}
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                className="flex items-center gap-2 px-2 py-1 hover:bg-emerald-700 rounded-full transition"
+                className="flex items-center gap-2 rounded-full transition cursor-pointer"
               >
-                <User2 />
+                <Image src={'/nayan-dhali.jpg'} alt="nayan-dhali" height={40} width={40} className="rounded-full"/>
               </button>
               <AnimatePresence>
                 {isProfileMenuOpen && (
@@ -167,28 +193,30 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 top-14 w-60 bg-white border border-gray-200 rounded-xl shadow-xl z-50"
+                    className="absolute right-0 top-14 w-60  border border-gray-200/40 rounded-xl shadow-xl z-50"
                   >
-                    <div className="p-4 border-b">
-                      <p className="text-sm font-semibold">{"User Name"}</p>
-                      <p className="text-xs text-gray-500">{"user@email.com"}</p>
+                    <div className="p-4 border-b border-gray-200/40">
+                      <p className="text-sm font-semibold">{"Nayan Dhali"}</p>
+                      <p className="text-xs text-gray-400">
+                        {"nayan@email.com"}
+                      </p>
                     </div>
                     <div className="py-2">
-                      <Link
+                      {/* <Link
                         href="/dashboard/my-profile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       >
                         My Profile
-                      </Link>
-                      <Link
+                      </Link> */}
+                      {/* <Link
                         href="/dashboard/settings"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       >
                         Settings
-                      </Link>
+                      </Link> */}
                       <button
                         onClick={handleLogout}
-                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                        className="w-full text-left px-4 py-2 text-sm text-red-600"
                       >
                         Logout
                       </button>
@@ -201,7 +229,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         </header>
 
         {/* Page Content */}
-        <main className="py-4 px-6 lg:px-6 lg:py-8 mt-12 bg-[#0D0D0D]">{children}</main>
+        <main className="py-4 px-6 lg:px-6 lg:py-8 mt-12 bg-[#0D0D0D]">
+          {children}
+        </main>
       </div>
 
       {/* Overlay */}

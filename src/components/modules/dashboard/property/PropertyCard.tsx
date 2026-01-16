@@ -66,7 +66,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         {/* Badges */}
         {property.badge && (
           <div className="absolute top-4 right-4 z-10">
-            <span className="bg-green-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+            <span className="bg-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
               <ShieldCheck className="w-4 h-4" />
               {property.badge}
             </span>
@@ -74,8 +74,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         )}
         {property.verified && (
           <div className="absolute top-4 left-4 z-10">
-            <span className="bg-green-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
-              <Verified className="w-4 h-4" />
+            <span className="flex items-center gap-1">
+              <Image
+              src={'/verified-badge.svg'}
+              alt='verified-badge'
+              height={60}
+              width={60}
+              />
             </span>
           </div>
         )}

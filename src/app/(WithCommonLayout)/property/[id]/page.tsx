@@ -64,11 +64,17 @@ const PropertyDetailsPage = () => {
 
                     {/* Golden Visa Badge */}
                     <div className="absolute top-6 left-6 z-10">
-                        <div className="bg-linear-to-b from-amber-200 to-yellow-600 rounded-lg px-4 py-6 shadow-xl">
+                        {/* <div className="bg-linear-to-b from-amber-200 to-yellow-600 rounded-lg px-4 py-6 shadow-xl">
                             <p className="text-black text-xs font-bold text-center leading-tight">
                                 Golden<br />Visa<br />Eligible
                             </p>
-                        </div>
+                        </div> */}
+                        <Image
+                            src={'/golden-visa-eligible.png'}
+                            alt='golden visa'
+                            height={80}
+                            width={80}
+                        />
                     </div>
                     <div className="absolute top-6 right-6 z-10">
                         <div className="bg-linear-to-b from-green-800 to-green-900 rounded-lg px-6 py-2 shadow-xl">

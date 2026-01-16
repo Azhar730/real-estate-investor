@@ -58,7 +58,7 @@ function LoginPAge() {
       toast.success("User register successfull!")
       router.push("/verify-otp");
     } else {
-      // Sign In লজিক
+      // Sign In
       const savedUser = localStorage.getItem(`user_${data.email}`);
       if (savedUser) {
         const user = JSON.parse(savedUser);

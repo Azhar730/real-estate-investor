@@ -1,5 +1,5 @@
 "use client"
-import PropertyCard from "@/components/modules/home/PropertyCard";
+import PropertyCard from "@/components/modules/dashboard/property/PropertyCard";
 import { propertyData } from "@/data/propertyData";
 import { SwiperSlide } from "swiper/react";
 
