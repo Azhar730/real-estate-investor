@@ -4,5 +4,5 @@ type User = {
 };
 
 export const user: User = {
-  role: "agent"
+  role: "buyer"
 }

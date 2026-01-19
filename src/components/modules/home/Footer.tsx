@@ -17,9 +17,9 @@ export default function Footer() {
                 <Image
                   src="/sakk.png" // public/sakk-logo.png রাখুন (আপনার লোগো)
                   alt="Sakk The Digital Seal"
-                  width={40}
-                  height={44}
-                  className="w-10 h-11"
+                  width={60}
+                  height={64}
+                  className=""
                 />
                 <h3 className="text-xl font-bold">Sakk The Digital Seal</h3>
               </div>

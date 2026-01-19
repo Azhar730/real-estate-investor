@@ -8,17 +8,17 @@ export default function VerifyHero() {
     const steps = [
         {
             icon: ShieldCheck,
-            title: "Verify",
+            title: "Verified",
             description: "Title Deed Verification",
         },
         {
             icon: PiSealCheckLight,
-            title: "Seal",
+            title: "Sealed",
             description: "Immutable Transaction Log",
         },
         {
             icon: Lock,
-            title: "Secure",
+            title: "Secured",
             description: "Secure your future",
         },
     ];
@@ -37,7 +37,7 @@ export default function VerifyHero() {
             </div>
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-none mb-8 md:mb-10">
-                    Verify. Seal. Secure
+                    Verified. Sealed. Secured
                 </h1>
                 <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-10 md:mb-16">
                     The Digital Standard of Saudi Real Estate

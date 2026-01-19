@@ -1,14 +1,20 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { ShieldCheck, Trophy, ChevronLeft, ChevronRight, Verified } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import {
+  ShieldCheck,
+  Trophy,
+  ChevronLeft,
+  ChevronRight,
+  Verified,
+} from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { FaArrowTrendUp } from "react-icons/fa6";
-import Link from 'next/link';
+import Link from "next/link";
 
 // TypeScript টাইপ (আপনার propertyData থেকে নেয়া)
 type Property = {
@@ -31,14 +37,14 @@ interface PropertyCardProps {
 
 export default function PropertyCard({ property }: PropertyCardProps) {
   return (
-    <Card className="relative bg-neutral-800 opacity-100 backdrop-blur-sm rounded-2xl overflow-hidden border border-yellow-500/40 hover:border-yellow-500 shadow-2xl p-0 h-full">
+    <Card className="relative bg-neutral-800 opacity-100 backdrop-blur-sm rounded-xl overflow-hidden border border-yellow-500/20 hover:border-yellow-500 shadow-2xl p-0 h-full">
       {/* Image Slider */}
       <div className="relative h-64">
         <Swiper
           modules={[Navigation]}
           navigation={{
-            prevEl: '.prev-btn',
-            nextEl: '.next-btn',
+            prevEl: ".prev-btn",
+            nextEl: ".next-btn",
           }}
           loop={true}
           className="h-full"
@@ -76,10 +82,10 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           <div className="absolute top-4 left-4 z-10">
             <span className="flex items-center gap-1">
               <Image
-              src={'/verified-badge.svg'}
-              alt='verified-badge'
-              height={60}
-              width={60}
+                src={"/verified-badge.svg"}
+                alt="verified-badge"
+                height={60}
+                width={60}
               />
             </span>
           </div>
@@ -94,26 +100,27 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       </div>
 
       {/* Content */}
-      <Link href={`/property/${property.id || '1'}`} className="px-3 py-0 -mt-3 block">
-        <h3 className="text-2xl font-bold text-white">{property.price}</h3>
-        <p className="text-lg text-white mb-1">{property.title}</p>
-        <p className="text-sm text-gray-300 mt-1">{property.subtitle}</p>
+      <Link
+        href={`/property/${property.id || "1"}`}
+        className="px-3 py-0 -mt-2 block"
+      >
+        <div className="flex items-center gap-4">
+          <div>
+            <h3 className="text-2xl font-bold text-white">{property.price}</h3>
+            <p className="text-lg text-white mb-1">{property.title}</p>
+            <p className="text-sm text-gray-300 mt-1">{property.subtitle}</p>
+          </div>
 
-        <div className="mt-2 relative">
-          <svg width="100%" height="60" viewBox="0 0 220 60" className="overflow-visible">
-            <polyline
-              fill="none"
-              stroke="#10b981"
-              strokeWidth="2"
-              points="10,45 40,40 80,35 120,28 160,32 200,25"
-            />
-            <polygon fill="#10b981" points="200,25 190,20 190,30" />
-          </svg>
+          <div className="mt-12 relative">
+            <Image src={"/graph.jpg"} alt="graph" height={84} width={157} />
+          </div>
         </div>
 
         <div className="flex items-center gap-x-1 mt-4">
           <FaArrowTrendUp className="text-green-400 font-semibold text-lg" />
-          <span className="text-gray-400 font-semibold text-lg">{property.roi}</span>
+          <span className="text-gray-400 font-semibold text-lg">
+            {property.roi}
+          </span>
           <span className="text-gray-400 text-sm ml-4">{property.area}</span>
         </div>
       </Link>

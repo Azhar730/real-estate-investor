@@ -31,10 +31,10 @@ const Banner = () => {
               spaceBetween={30}
               loop={true}
               mousewheel={true}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
+              // autoplay={{
+              //   delay: 5000,
+              //   disableOnInteraction: false,
+              // }}
               modules={[Autoplay, Mousewheel]}
               className="h-[500px] md:h-[1000px] w-[400px]"
             >
