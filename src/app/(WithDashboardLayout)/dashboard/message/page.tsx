@@ -184,18 +184,18 @@ export default function MessagesPage() {
         </div>
       )}
 
-      <div className="px-4 py-1">
+      <div className="p-1">
         <h1 className="text-xl font-semibold">Messages</h1>
       </div>
 
       <div className="flex ">
         {/* Chat List */}
         <div
-          className={` mr-4 rounded-xl bg-stone-800/70 w-full lg:w-80  overflow-y-auto shrink-0 ${
+          className={`mr-4 rounded-xl bg-stone-800/70 w-full lg:w-80  overflow-y-auto shrink-0 ${
             selectedChatId ? "hidden lg:block" : "block"
           }`}
         >
-          <div className="relative w-full max-w-md my-2 px-4 border-b pb-4">
+          <div className="relative w-full max-w-md my-2 px-4 border-b pb-2">
             <Search
               className="absolute left-7 top-5 transform -translate-y-1/2 text-gray-400 "
               size={18}
@@ -246,7 +246,7 @@ export default function MessagesPage() {
 
         {/* Chat Area */}
         <div
-          className={`rounded-xl bg-stone-800/70 flex-1 flex flex-col ${
+          className={`rounded-xl bg-stone-800/70 max-h-185 flex-1 flex flex-col  ${
             selectedChatId ? "block" : "hidden lg:block"
           }`}
         >
@@ -280,9 +280,10 @@ export default function MessagesPage() {
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-hidden">
-                <ScrollArea className="h-full p-4 scrollbar-hide">
-                  <div className="space-y-5 max-w-3xl mx-auto">
+              <div className="flex-1 overflow-auto">
+                {/* <ScrollArea className="h-full p-4 scrollbar-hide bg-red-200 overflow-y-auto"> */}
+                <ScrollArea className="h-full p-4 overflow-y-auto">
+                  <div className="space-y-5 max-w-5xl mx-auto">
                     {messages.map((msg) => (
                       <MessageBubble
                         key={msg.id}

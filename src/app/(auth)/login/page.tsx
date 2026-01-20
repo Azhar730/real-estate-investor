@@ -370,7 +370,7 @@ function LoginPAge() {
                                 <div className="flex items-start gap-3">
                                     <Checkbox id="terms" {...register("terms", { required: "You must agree to the terms" })} />
                                     <label htmlFor="terms" className="text-sm text-white leading-tight">
-                                        I agree to the <a href="#" className="text-emerald-600 hover:underline">Terms of Service</a> and <a href="#" className="text-emerald-600 hover:underline">Privacy Policy</a>
+                                        I agree to the <Link href="terms-condition" className="text-emerald-600 hover:underline">Terms of Service</Link> and <Link href="#" className="text-emerald-600 hover:underline">Privacy Policy</Link>
                                     </label>
                                 </div>
                                 {errors.terms && <p className="text-red-500 text-sm">{errors.terms.message}</p>}

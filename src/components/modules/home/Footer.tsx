@@ -4,6 +4,7 @@ import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
 import { Mail, Linkedin, Twitter, Instagram } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -28,12 +29,14 @@ export default function Footer() {
                 Smart Real Estate Investment Platform
               </p>
 
-              <Button
-                variant="outline"
-                className="h-9 px-6 rounded-lg border-white/10 bg-stone-900 hover:bg-white/5 text-gray-300"
-              >
-                Contact us
-              </Button>
+              <Link href={"/contact-us"}>
+                <Button
+                  variant="outline"
+                  className="cursor-pointer h-9 px-6 rounded-lg border-white/10 bg-stone-900 hover:bg-white/5 text-gray-300"
+                >
+                  Contact us
+                </Button>
+              </Link>
             </div>
 
             {/* Investment Links */}
@@ -41,17 +44,26 @@ export default function Footer() {
               <h4 className="text-base font-normal text-white">Investment</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                  <a
+                    href="#"
+                    className="text-sm text-zinc-500 hover:text-white transition"
+                  >
                     Golden Visa Properties
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                  <a
+                    href="#"
+                    className="text-sm text-zinc-500 hover:text-white transition"
+                  >
                     High Yield Investments
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                  <a
+                    href="#"
+                    className="text-sm text-zinc-500 hover:text-white transition"
+                  >
                     Giga-Projects
                   </a>
                 </li>
@@ -63,17 +75,26 @@ export default function Footer() {
               <h4 className="text-base font-normal text-white">Company</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                  <a
+                    href="#"
+                    className="text-sm text-zinc-500 hover:text-white transition"
+                  >
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                  <a
+                    href="#"
+                    className="text-sm text-zinc-500 hover:text-white transition"
+                  >
                     Contact Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                  <a
+                    href="#"
+                    className="text-sm text-zinc-500 hover:text-white transition"
+                  >
                     Privacy Policy
                   </a>
                 </li>
@@ -83,15 +104,23 @@ export default function Footer() {
             {/* Support & Social Links */}
             <div className="space-y-6">
               <div>
-                <h4 className="text-base font-normal text-white mb-6">Support</h4>
+                <h4 className="text-base font-normal text-white mb-6">
+                  Support
+                </h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                    <a
+                      href="#"
+                      className="text-sm text-zinc-500 hover:text-white transition"
+                    >
                       FAQs
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="text-sm text-zinc-500 hover:text-white transition">
+                    <a
+                      href="#"
+                      className="text-sm text-zinc-500 hover:text-white transition"
+                    >
                       Agent Verification
                     </a>
                   </li>
@@ -130,26 +159,23 @@ export default function Footer() {
               <p className="text-sm text-zinc-500 mb-4 md:mb-0">Trusted By</p>
               <div className="flex flex-wrap items-center gap-6">
                 <div className="h-9 px-4 bg-stone-900 rounded-lg border border-white/10 flex items-center gap-2">
-                  <Image
-                    src={'/rega.svg'}
-                    alt="rega"
-                    height={20}
-                    width={20}
-                  />
+                  <Image src={"/rega.svg"} alt="rega" height={20} width={20} />
                   <span className="text-sm text-gray-400">REGA</span>
                 </div>
                 <div className="h-9 px-4 bg-stone-900 rounded-lg border border-white/10 flex items-center gap-2">
                   <Image
-                    src={'/justice.svg'}
+                    src={"/justice.svg"}
                     alt="justice"
                     height={20}
                     width={20}
                   />
-                  <span className="text-sm text-gray-400">Ministry of Justice</span>
+                  <span className="text-sm text-gray-400">
+                    Ministry of Justice
+                  </span>
                 </div>
                 <div className="h-9 px-4 bg-stone-900 rounded-lg border border-white/10 flex items-center gap-2">
                   <Image
-                    src={'/vision.svg'}
+                    src={"/vision.svg"}
                     alt="vision"
                     height={20}
                     width={20}

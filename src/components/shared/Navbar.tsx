@@ -80,7 +80,7 @@ const Navbar = () => {
       )}
     >
       {/* Location */}
-      <div className="flex items-center gap-2 flex-1 min-w-[80px] border-r border-zinc-700 pr-2">
+      <div className="flex items-center gap-2 flex-1 min-w-20 border-r border-zinc-700 pr-2">
         <MapPin className="w-4 h-4 text-emerald-400" />
         <Input
           type="text"
@@ -102,7 +102,7 @@ const Navbar = () => {
       )}
 
       {/* Budget */}
-      <div className="flex items-center gap-2 flex-shrink-0 px-2">
+      <div className="flex items-center gap-2 shrink-0 px-2">
         <DollarSign className="w-4 h-4 text-emerald-400" />
         <Input
           type="text"
@@ -112,8 +112,8 @@ const Navbar = () => {
       </div>
 
       {/* Search Button */}
-      <Button size="icon" className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-700 hover:from-emerald-500 hover:to-emerald-800">
-        <Search className="w-4 h-4 text-white stroke-[2]" />
+      <Button size="icon" className="w-10 h-10 rounded-full bg-linear-to-br from-emerald-400 to-emerald-700 hover:from-emerald-500 hover:to-emerald-800">
+        <Search className="w-4 h-4 text-white stroke-2" />
       </Button>
     </div>
   );
@@ -124,7 +124,7 @@ const Navbar = () => {
       {CATEGORY_BUTTONS.map((cat, i) => (
         <Button
           key={i}
-          variant={cat.type === "secondary" ? "secondary" : "primary"}
+          variant={cat.type === "secondary" ? "secondary" : "default"}
           className={cn(
             "px-4 py-2.5 rounded-3xl text-sm md:text-base flex items-center gap-2",
             cat.type === "primary"
@@ -162,13 +162,13 @@ const Navbar = () => {
 
             {/* Right Actions */}
             <div className="hidden lg:flex items-center gap-6">
-              <Button variant="outline" className="h-9 px-3 rounded-[10px] border-white/10 text-gray-400 hover:bg-white/5">
+              {/* <Button variant="outline" className="h-9 px-3 rounded-[10px] border-white/10 text-gray-400 hover:bg-white/5">
                 <MapPinned className="w-4 h-4 mr-2" />
                 Location
-              </Button>
+              </Button> */}
 
               {!isLoggedIn ? (
-                <Link href="/login" className="text-red-400 text-sm font-normal hover:text-red-300 transition">
+                <Link href="/login" className="text-red-400 border border-red-400 px-4 py-1 rounded text-sm font-normal hover:text-red-300 transition">
                   Sign In
                 </Link>
               ) : (
@@ -233,11 +233,11 @@ const Navbar = () => {
 
           {/* Sidebar Content mirrors desktop */}
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            <Button variant="outline" className="w-full justify-start border-white/10 text-gray-300">
+            {/* <Button variant="outline" className="w-full justify-start border-white/10 text-gray-300">
               <MapPinned className="w-5 h-5 mr-3" /> Location
-            </Button>
+            </Button> */}
             {!isLoggedIn ? (
-              <Link href="/login" className="block w-full text-center py-3 text-red-400 border border-red-400/30 rounded-lg hover:bg-red-400/10">
+              <Link href="/login" className="block w-full text-center py-3 text-red-400 border border-red-400 rounded-lg hover:bg-red-400/10">
                 Sign In
               </Link>
             ) : (

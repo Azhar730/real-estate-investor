@@ -52,21 +52,21 @@ export default function GigaProjects() {
                 spaceBetween: 48,
               },
             }}
-            className=" !pb-8"
+            className="pb-8!"
           >
             {developerProjectsData.map((project, index) => (
               <SwiperSlide key={index}>
                 <div className="group cursor-pointer rounded-xl bg-white">
                   <div className="relative rounded-lg overflow-hidden">
                     {/* Image */}
-                    <div className="aspect-[4/3] relative overflow-hidden">
+                    <div className="aspect-4/3 relative overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-black/10 to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/5 via-black/10 to-transparent" />
                     </div>
 
                     {/* Content */}
