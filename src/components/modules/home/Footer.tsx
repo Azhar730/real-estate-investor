@@ -159,9 +159,15 @@ export default function Footer() {
               <p className="text-sm text-zinc-500 mb-4 md:mb-0">Trusted By</p>
               <div className="flex flex-wrap items-center gap-6">
                 <div className="h-9 px-4 bg-stone-900 rounded-lg border border-white/10 flex items-center gap-2">
-                  <Image src={"/rega.svg"} alt="rega" height={20} width={20} />
+                  <Image className="mt-1.5" src={"/verified-badge.svg"} alt="rega" height={25} width={25} />
                   <span className="text-sm text-gray-400">REGA</span>
                 </div>
+                {/* <Image
+                                src={"/verified-badge.svg"}
+                                alt="verified-badge"
+                                height={60}
+                                width={60}
+                              /> */}
                 <div className="h-9 px-4 bg-stone-900 rounded-lg border border-white/10 flex items-center gap-2">
                   <Image
                     src={"/justice.svg"}
