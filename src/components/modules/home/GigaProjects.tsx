@@ -12,12 +12,17 @@ import { gigaProjectsData } from "@/data/gigaProjectsData";
 import Link from "next/link";
 import Image from "next/image";
 
+import { useRef } from "react";
+import type { Swiper as SwiperType } from "swiper";
+
 export default function GigaProjects() {
   const [activeId, setActiveId] = useState<number | null>(null);
 
   const handleToggle = (id: number) => {
     setActiveId((prev) => (prev === id ? null : id));
   };
+
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <section className="p-4 lg:p-8 overflow-hidden">
@@ -30,12 +35,12 @@ export default function GigaProjects() {
         </div>
 
         <Swiper
-          // modules={[Navigation, Autoplay]}
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           spaceBetween={24}
           slidesPerView={1.2}
           loop
-          // autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           breakpoints={{
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
@@ -47,7 +52,11 @@ export default function GigaProjects() {
 
             return (
               <SwiperSlide key={project.id}>
-                <div className="group bg-neutral-800 rounded-xl overflow-hidden transition-all duration-500">
+                <div
+                  onMouseEnter={() => swiperRef.current?.autoplay.stop()}
+                  onMouseLeave={() => swiperRef.current?.autoplay.start()}
+                  className="group bg-neutral-800 rounded-xl overflow-hidden transition-all duration-500"
+                >
                   {/* IMAGE (CLICKABLE) */}
                   <div
                     onClick={() => handleToggle(project.id)}
@@ -104,7 +113,7 @@ export default function GigaProjects() {
                           <p>{project.priceRange}</p>
                           <p className="text-zinc-300 text-center flex items-center gap-2">
                             <Image
-                              src={'/saudi-rial.svg'}
+                              src={"/saudi-rial.svg"}
                               alt="saudi-rial"
                               height={20}
                               width={20}
@@ -118,9 +127,7 @@ export default function GigaProjects() {
                             <p>324 - 324</p>
                           </div>
                           <p className="text-zinc-300 text-center flex items-center gap-2">
-                            
-                            <Car className="h-4 w-4" />
-                            4 - 4
+                            <Car className="h-4 w-4" />4 - 4
                           </p>
                         </div>
                         <p className="flex items-center justify-center gap-2 bg-[#FFFFFF1A] p-2 rounded-lg text-xl">

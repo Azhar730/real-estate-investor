@@ -7,8 +7,11 @@ import "swiper/css/navigation";
 import Container from "@/components/shared/Container";
 import { developerProjectsData } from "@/data/developerProjectsData";
 import { SwiperNavButtons } from "../swiper-nav/SwiperNavButtons";
+import type { Swiper as SwiperType } from "swiper";
+import { useRef } from "react";
 
 export default function GigaProjects() {
+  const swiperRef = useRef<SwiperType | null>(null);
   return (
     <section className="p-4 lg:p-8 overflow-hidden">
       <Container>
@@ -25,15 +28,16 @@ export default function GigaProjects() {
         {/* Swiper Carousel */}
         <div className="relative">
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             spaceBetween={24}
             slidesPerView={1.2}
             centeredSlides={false}
             loop={true}
-            // autoplay={{
-            //     delay: 5000,
-            //     disableOnInteraction: false,
-            // }}
+            autoplay={{
+              delay: 1000,
+              disableOnInteraction: false,
+            }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
             breakpoints={{
               640: {
                 slidesPerView: 1.5,
@@ -56,7 +60,11 @@ export default function GigaProjects() {
           >
             {developerProjectsData.map((project, index) => (
               <SwiperSlide key={index}>
-                <div className="group cursor-pointer rounded-xl bg-white">
+                <div
+                  onMouseEnter={() => swiperRef.current?.autoplay.stop()}
+                  onMouseLeave={() => swiperRef.current?.autoplay.start()}
+                  className="group cursor-pointer rounded-xl bg-white"
+                >
                   <div className="relative rounded-lg overflow-hidden">
                     {/* Image */}
                     <div className="aspect-4/3 relative overflow-hidden">

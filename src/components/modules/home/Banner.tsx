@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Mousewheel } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import { propertyData } from '@/data/propertyData';
-import PropertyCard from '../dashboard/property/PropertyCard';
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { propertyData } from "@/data/propertyData";
+import PropertyCard from "../dashboard/property/PropertyCard";
+import type { Swiper as SwiperType } from "swiper";
+import { useRef } from "react";
 
 const Banner = () => {
+  const swiperRef = useRef<SwiperType | null>(null);
   return (
     <div className="relative mt-4 w-full overflow-hidden">
       {/* Banner Image */}
@@ -31,16 +34,22 @@ const Banner = () => {
               spaceBetween={30}
               loop={true}
               mousewheel={true}
-              // autoplay={{
-              //   delay: 5000,
-              //   disableOnInteraction: false,
-              // }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+              }}
               modules={[Autoplay, Mousewheel]}
-              className="h-[500px] md:h-[1000px] w-[400px]"
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              className="h-125 md:h-250 w-100"
             >
               {propertyData.map((property: any, index) => (
                 <SwiperSlide key={index}>
-                  <PropertyCard property={property} />
+                  <div
+                    onMouseEnter={() => swiperRef.current?.autoplay.stop()}
+                    onMouseLeave={() => swiperRef.current?.autoplay.start()}
+                  >
+                    <PropertyCard property={property} />
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>

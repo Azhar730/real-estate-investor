@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutDashboard, Mail, Lock, Trophy, Edit } from "lucide-react";
+import { LayoutDashboard, Mail, Lock, Trophy, Edit, FileText, LandPlot } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import BuyerProfileOverview from "./BuyerProfileOverView";
 import BuyerProfileContactInfo from "./BuyerProfileContactInfo";
@@ -76,7 +76,7 @@ export default function BuyerProfile() {
               data-[state=active]:border-l-emerald-500
             "
                     >
-                        <LayoutDashboard size={18} className="shrink-0" />
+                        <FileText size={18} className="shrink-0" />
                         <span className="font-medium">KYC Documents</span>
                     </TabsTrigger>
 
@@ -124,7 +124,7 @@ export default function BuyerProfile() {
               data-[state=active]:border-l-emerald-500
             "
                     >
-                        <Mail size={18} className="shrink-0" />
+                        <LandPlot size={18} className="shrink-0" />
                         <span className="font-medium">Property</span>
                     </TabsTrigger>
 
