@@ -35,7 +35,7 @@ const Banner = () => {
               loop={true}
               mousewheel={true}
               autoplay={{
-                delay: 2000,
+                delay: 5000,
                 disableOnInteraction: false,
               }}
               modules={[Autoplay, Mousewheel]}

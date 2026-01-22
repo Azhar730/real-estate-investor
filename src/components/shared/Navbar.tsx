@@ -31,6 +31,8 @@ const CATEGORY_BUTTONS = [
   { name: "High Yield", type: "secondary", icon: "/high-yeld.svg" },
   { name: "Giga-Projects", type: "secondary", icon: "/giga-projects.svg" },
   { name: "KAFD Elite", type: "secondary", icon: "/kafd-elite.svg" },
+  { name: "Makkah", type: "secondary", icon: "/makkah.svg" },
+  { name: "Madinah", type: "secondary", icon: "/madinah.svg" },
 ];
 
 const Navbar = () => {
@@ -55,7 +57,10 @@ const Navbar = () => {
   // Click outside for dropdown & sidebar
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node))
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      )
         setIsDropdownOpen(false);
       if (sidebarRef.current && !sidebarRef.current.contains(e.target as Node))
         setIsNavOpened(false);
@@ -74,9 +79,10 @@ const Navbar = () => {
   const SearchBar = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
       className={cn(
-        "flex items-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
-        isMobile ? "w-full" : "w-full max-w-6xl",
-        !isMobile && "hover:shadow-[0_20px_60px_rgba(0,0,0,0.8)] shadow-[0_15px_50px_rgba(0,0,0,0.6)]"
+        " flex items-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
+        isMobile ? "w-full" : "w-full max-w-5xl",
+        !isMobile &&
+          "hover:shadow-[0_20px_60px_rgba(0,0,0,0.8)] shadow-[0_15px_50px_rgba(0,0,0,0.6)]",
       )}
     >
       {/* Location */}
@@ -112,7 +118,10 @@ const Navbar = () => {
       </div>
 
       {/* Search Button */}
-      <Button size="icon" className="w-10 h-10 rounded-full bg-linear-to-br from-emerald-400 to-emerald-700 hover:from-emerald-500 hover:to-emerald-800">
+      <Button
+        size="icon"
+        className="w-10 h-10 rounded-full bg-linear-to-br from-emerald-400 to-emerald-700 hover:from-emerald-500 hover:to-emerald-800"
+      >
         <Search className="w-4 h-4 text-white stroke-2" />
       </Button>
     </div>
@@ -129,10 +138,12 @@ const Navbar = () => {
             "px-4 py-2.5 rounded-3xl text-sm md:text-base flex items-center gap-2",
             cat.type === "primary"
               ? "bg-linear-to-b from-green-400 to-green-800 text-white hover:from-green-600 hover:to-green-900"
-              : "bg-zinc-700 text-white border border-neutral-400/50"
+              : "bg-zinc-700 text-white border border-neutral-400/50",
           )}
         >
-          {cat.icon && <Image alt={cat.name} src={cat.icon} height={16} width={16} />}
+          {cat.icon && (
+            <Image alt={cat.name} src={cat.icon} height={16} width={16} />
+          )}
           {cat.name}
         </Button>
       ))}
@@ -145,35 +156,56 @@ const Navbar = () => {
       <nav
         className={cn(
           "top-0 left-0 right-0 z-50 bg-neutral-800 border-b border-zinc-500 flex flex-col items-center py-4 md:py-6 transition-all duration-300",
-          { "backdrop-blur-md shadow-md": isScrolled || pathName !== "/" }
+          { "backdrop-blur-md shadow-md": isScrolled || pathName !== "/" },
         )}
       >
         <div className="w-full max-w-full px-4 md:px-20 flex flex-col gap-4">
           <div className="flex items-center justify-between w-full">
             {/* Logo */}
-            <Link href="/" className="shrink-0">
-              <Image alt="sakk" src="/sakk.png" width={100} height={100} className="h-14 md:h-24 w-auto" />
-            </Link>
+            <div>
+              <Link href="/" className="shrink-0">
+                <Image
+                  alt="sakk"
+                  src="/sakk.png"
+                  width={100}
+                  height={100}
+                  className="h-14 md:h-24 w-auto"
+                />
+              </Link>
+            </div>
 
             {/* Desktop Search */}
-            <div className="hidden md:flex flex-1 justify-center">
+            <div className="hidden md:flex flex-1 justify-center ">
               <SearchBar />
             </div>
 
             {/* Right Actions */}
-            <div className="hidden lg:flex items-center gap-6">
-              {/* <Button variant="outline" className="h-9 px-3 rounded-[10px] border-white/10 text-gray-400 hover:bg-white/5">
-                <MapPinned className="w-4 h-4 mr-2" />
-                Location
-              </Button> */}
-
+            <div className="hidden lg:flex items-center ">
               {!isLoggedIn ? (
-                <Link href="/login" className="text-red-400 border border-red-400 px-4 py-1 rounded text-sm font-normal hover:text-red-300 transition">
-                  Sign In
-                </Link>
+                <div className="flex items-center gap-4 mx-2">
+                  <div>
+                    <Link
+                      href="/login"
+                      className="text-red-400 border border-red-500 py-2 px-4  rounded font-normal hover:text-red-300 transition"
+                    >
+                      Sign In
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      href="/signup"
+                      className="py-2 px-4 text-center rounded bg-emerald-600 hover:bg-emerald-500"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                </div>
               ) : (
                 <div className="relative" ref={dropdownRef}>
-                  <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center gap-2 p-1 rounded-full">
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="flex items-center gap-2 p-1 rounded-full"
+                  >
                     <FiUser className="w-5 h-5 text-white" />
                     <MdKeyboardArrowDown className="h-5 w-5 text-gray-400" />
                   </button>
@@ -183,10 +215,16 @@ const Navbar = () => {
                         <Avatar size="large" icon={<UserOutlined />} />
                         <h3 className="font-medium text-black">Azhar Mahmud</h3>
                       </div>
-                      <button onClick={() => router.push("/dashboard")} className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100">
+                      <button
+                        onClick={() => router.push("/dashboard")}
+                        className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100"
+                      >
                         <RxDashboard className="w-4 h-4 text-main" /> Dashboard
                       </button>
-                      <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100">
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100"
+                      >
                         <BiLogOut className="w-4 h-4 text-main" /> Logout
                       </button>
                     </div>
@@ -198,9 +236,17 @@ const Navbar = () => {
             {/* Mobile Hamburger */}
             <div className="flex lg:hidden">
               {isNavOpened ? (
-                <IoClose className="text-white" onClick={() => setIsNavOpened(false)} size={28} />
+                <IoClose
+                  className="text-white"
+                  onClick={() => setIsNavOpened(false)}
+                  size={28}
+                />
               ) : (
-                <IoMenu className="text-white" onClick={() => setIsNavOpened(true)} size={28} />
+                <IoMenu
+                  className="text-white"
+                  onClick={() => setIsNavOpened(true)}
+                  size={28}
+                />
               )}
             </div>
           </div>
@@ -220,15 +266,25 @@ const Navbar = () => {
         ref={sidebarRef}
         className={cn(
           "fixed top-0 left-0 h-screen w-[80%] max-w-xs bg-emerald-900 shadow-2xl z-40 transform transition-transform duration-500 ease-in-out",
-          isNavOpened ? "translate-x-0" : "-translate-x-full"
+          isNavOpened ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex flex-col h-full text-white">
           <div className="flex items-center justify-between p-6 border-b border-zinc-700">
             <Link href="/" className="shrink-0">
-              <Image alt="sakk" src="/sakk.png" width={100} height={100} className="h-14 md:h-24 w-auto" />
+              <Image
+                alt="sakk"
+                src="/sakk.png"
+                width={100}
+                height={100}
+                className="h-14 md:h-24 w-auto"
+              />
             </Link>
-            <IoClose className="text-white" onClick={() => setIsNavOpened(false)} size={28} />
+            <IoClose
+              className="text-white"
+              onClick={() => setIsNavOpened(false)}
+              size={28}
+            />
           </div>
 
           {/* Sidebar Content mirrors desktop */}
@@ -237,14 +293,34 @@ const Navbar = () => {
               <MapPinned className="w-5 h-5 mr-3" /> Location
             </Button> */}
             {!isLoggedIn ? (
-              <Link href="/login" className="block w-full text-center py-3 text-red-400 border border-red-400 rounded-lg hover:bg-red-400/10">
-                Sign In
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/login"
+                  className="block w-full text-center py-3 text-red-400 border border-red-400 rounded-lg hover:bg-red-400/10"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/login"
+                  className="block w-full text-center py-3 rounded-lg bg-emerald-600 hover:bg-emerald-500"
+                >
+                  Sign Up
+                </Link>
+              </div>
             ) : (
               <div className="space-y-3">
-                <button className="w-full flex items-center gap-3 py-2"><FiUser className="w-5 h-5" /> My Profile</button>
-                <button className="w-full flex items-center gap-3 py-2"><RxDashboard className="w-5 h-5" /> Dashboard</button>
-                <button onClick={handleLogout} className="w-full flex items-center gap-3 py-2 text-red-400"><BiLogOut className="w-5 h-5" /> Logout</button>
+                <button className="w-full flex items-center gap-3 py-2">
+                  <FiUser className="w-5 h-5" /> My Profile
+                </button>
+                <button className="w-full flex items-center gap-3 py-2">
+                  <RxDashboard className="w-5 h-5" /> Dashboard
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 py-2 text-red-400"
+                >
+                  <BiLogOut className="w-5 h-5" /> Logout
+                </button>
               </div>
             )}
           </div>
@@ -252,7 +328,12 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Overlay */}
-      {isNavOpened && <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={() => setIsNavOpened(false)} />}
+      {isNavOpened && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+          onClick={() => setIsNavOpened(false)}
+        />
+      )}
     </>
   );
 };

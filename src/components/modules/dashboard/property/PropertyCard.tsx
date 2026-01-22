@@ -10,11 +10,11 @@ import {
   Trophy,
   ChevronLeft,
   ChevronRight,
-  Verified,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import Link from "next/link";
+import GrowthChart from "@/components/shared/GrowthChart";
 
 // TypeScript টাইপ (আপনার propertyData থেকে নেয়া)
 type Property = {
@@ -36,6 +36,7 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
+
   return (
     <Card className="relative bg-neutral-800 opacity-100 backdrop-blur-sm rounded-xl overflow-hidden border border-yellow-500/20 hover:border-yellow-500 shadow-2xl p-0 h-full">
       {/* Image Slider */}
@@ -112,7 +113,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
 
           <div className="mt-12 relative">
-            <Image src={"/graph.jpg"} alt="graph" height={84} width={157} />
+            <GrowthChart/>
           </div>
         </div>
 
