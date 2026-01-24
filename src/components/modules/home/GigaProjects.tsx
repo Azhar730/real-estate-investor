@@ -14,6 +14,8 @@ import Image from "next/image";
 
 import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper";
+import { Button } from "@/components/ui/button";
+import { UnitsModal } from "../modal/UnitModal";
 
 export default function GigaProjects() {
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -39,7 +41,7 @@ export default function GigaProjects() {
           spaceBetween={24}
           slidesPerView={1.2}
           loop
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           breakpoints={{
             768: { slidesPerView: 2 },
@@ -86,13 +88,8 @@ export default function GigaProjects() {
                     <ArrowRight size={16} />
                   </Link>
 
-                  {/* EXPANDED CONTENT */}
                   {isActive && (
                     <div className="p-4 space-y-4 text-white animate-in slide-in-from-top-2">
-                      {/* <Link href={'/#'} className="text-yellow-500 text-sm p-3 flex items-center gap-2">
-                        View properties within {project.nearbyRadius}
-                        <ArrowRight size={16} />
-                      </Link> */}
                       {/* Sold Units */}
                       <div>
                         <p className="text-sm mb-1">Sold Units</p>
@@ -134,9 +131,14 @@ export default function GigaProjects() {
                           AD ID #
                           <Copy className="text-emerald-500" />
                         </p>
-                        <p className="text-center bg-[#FFFFFF1A] p-2 rounded-lg text-xl">
-                          More Info
-                        </p>
+                        <UnitsModal
+                          projectTitle={project.title}
+                          triggerButton={
+                            <Button className="cursor-pointer w-full bg-[#FFFFFF1A] hover:bg-emerald-600 text-white h-12">
+                              More Info
+                            </Button>
+                          }
+                        />
                       </div>
 
                       {/* ACTIONS */}
@@ -150,7 +152,7 @@ export default function GigaProjects() {
             );
           })}
 
-          <SwiperNavButtons />
+          {/* <SwiperNavButtons /> */}
         </Swiper>
       </Container>
     </section>

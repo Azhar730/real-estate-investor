@@ -162,7 +162,7 @@ export default function MessagesPage() {
   };
 
   return (
-    <div className="h-100dvh flex flex-col text-gray-100 overflow-hidden">
+    <div className="h-100dvh flex flex-col text-gray-100 overflow-hidden mt-6">
       {/* Enlarged Image Modal */}
       {enlargeImage && (
         <div
@@ -185,7 +185,7 @@ export default function MessagesPage() {
       )}
 
       <div className="p-1">
-        <h1 className="text-xl font-semibold">Messages</h1>
+        <h1 className="text-2xl font-semibold mb-4">Messages</h1>
       </div>
 
       <div className="flex ">

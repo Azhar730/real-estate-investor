@@ -6,11 +6,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Container from "@/components/shared/Container";
 import { developerProjectsData } from "@/data/developerProjectsData";
-import { SwiperNavButtons } from "../swiper-nav/SwiperNavButtons";
 import type { Swiper as SwiperType } from "swiper";
 import { useRef } from "react";
 
-export default function GigaProjects() {
+export default function DeveloperProjects() {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <section className="p-4 lg:p-8 overflow-hidden">
@@ -29,34 +28,16 @@ export default function GigaProjects() {
         <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay]}
-            spaceBetween={24}
-            slidesPerView={1.2}
-            centeredSlides={false}
-            loop={true}
-            autoplay={{
-              delay: 1000,
-              disableOnInteraction: false,
-            }}
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-            breakpoints={{
-              640: {
-                slidesPerView: 1.5,
-                spaceBetween: 30,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 32,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-              },
-              1280: {
-                slidesPerView: 4,
-                spaceBetween: 48,
-              },
-            }}
-            className="pb-8!"
+          spaceBetween={24}
+          slidesPerView={1.2}
+          loop
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          }}
           >
             {developerProjectsData.map((project, index) => (
               <SwiperSlide key={index}>
@@ -90,9 +71,9 @@ export default function GigaProjects() {
                 </div>
               </SwiperSlide>
             ))}
-            <SwiperNavButtons />
           </Swiper>
           {/* Navigation Buttons */}
+          {/* <SwiperNavButtons /> */}
         </div>
       </Container>
     </section>

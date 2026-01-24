@@ -10,7 +10,11 @@ import PropertyCard from "../dashboard/property/PropertyCard";
 import type { Swiper as SwiperType } from "swiper";
 import { useRef } from "react";
 
-const Banner = () => {
+interface BannerProps {
+  properties: typeof propertyData;
+}
+
+const Banner = ({ properties }: BannerProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <div className="relative mt-4 w-full overflow-hidden">
@@ -42,8 +46,8 @@ const Banner = () => {
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               className="h-125 md:h-250 w-100"
             >
-              {propertyData.map((property: any, index) => (
-                <SwiperSlide key={index}>
+              {properties.map((property: any) => (
+                <SwiperSlide key={property.id}>
                   <div
                     onMouseEnter={() => swiperRef.current?.autoplay.stop()}
                     onMouseLeave={() => swiperRef.current?.autoplay.start()}

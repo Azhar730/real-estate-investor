@@ -26,7 +26,7 @@ import {
 
 // Category Buttons Data
 const CATEGORY_BUTTONS = [
-  { name: "All Properties", type: "primary" },
+  { name: "All Properties", type: "secondary" },
   { name: "Golden Visa", type: "secondary", icon: "/golden-visa.svg" },
   { name: "High Yield", type: "secondary", icon: "/high-yeld.svg" },
   { name: "Giga-Projects", type: "secondary", icon: "/giga-projects.svg" },
@@ -34,8 +34,11 @@ const CATEGORY_BUTTONS = [
   { name: "Makkah", type: "secondary", icon: "/makkah.svg" },
   { name: "Madinah", type: "secondary", icon: "/madinah.svg" },
 ];
-
-const Navbar = () => {
+interface NavbarProps {
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+}
+const Navbar = ({ selectedCategory, setSelectedCategory }: NavbarProps) => {
   const pathName = usePathname();
   const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -79,7 +82,7 @@ const Navbar = () => {
   const SearchBar = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
       className={cn(
-        " flex items-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
+        " flex items-center justify-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
         isMobile ? "w-full" : "w-full max-w-5xl",
         !isMobile &&
           "hover:shadow-[0_20px_60px_rgba(0,0,0,0.8)] shadow-[0_15px_50px_rgba(0,0,0,0.6)]",
@@ -129,7 +132,7 @@ const Navbar = () => {
 
   // Category Pills
   const CategoryPills = () => (
-    <div className="flex justify-center items-center gap-3 flex-wrap px-2 py-2">
+    <div className="flex justify-center items-center gap-3 flex-wrap px-2 py-2 w-full">
       {CATEGORY_BUTTONS.map((cat, i) => (
         <Button
           key={i}
@@ -138,8 +141,10 @@ const Navbar = () => {
             "px-4 py-2.5 rounded-3xl text-sm md:text-base flex items-center gap-2",
             cat.type === "primary"
               ? "bg-linear-to-b from-green-400 to-green-800 text-white hover:from-green-600 hover:to-green-900"
-              : "bg-zinc-700 text-white border border-neutral-400/50",
+              : "bg-zinc-700 text-white",
+              selectedCategory === cat.name && "bg-linear-to-b from-green-400 to-green-800 text-white hover:from-green-600 hover:to-green-900"
           )}
+          onClick={() => setSelectedCategory(cat.name)}
         >
           {cat.icon && (
             <Image alt={cat.name} src={cat.icon} height={16} width={16} />
@@ -159,7 +164,7 @@ const Navbar = () => {
           { "backdrop-blur-md shadow-md": isScrolled || pathName !== "/" },
         )}
       >
-        <div className="w-full max-w-full px-4 md:px-20 flex flex-col gap-4">
+        <div className="w-full max-w-full px-4 md:px-20 flex flex-col gap-4 items-center">
           <div className="flex items-center justify-between w-full">
             {/* Logo */}
             <div>
