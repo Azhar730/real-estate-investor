@@ -19,7 +19,7 @@ import GrowthChart from "@/components/shared/GrowthChart";
 // TypeScript টাইপ (আপনার propertyData থেকে নেয়া)
 type Property = {
   images: string[];
-  badge?: string;
+  badge?: string | null;
   verified?: boolean;
   trophy?: boolean;
   price: string;
@@ -27,7 +27,6 @@ type Property = {
   subtitle: string;
   roi: string;
   area: string;
-  // id যোগ করা ভালো (লিঙ্কের জন্য)
   id?: string | number;
 };
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Mousewheel } from "swiper/modules";
 import "swiper/css";
@@ -9,24 +8,20 @@ import { propertyData } from "@/data/propertyData";
 import PropertyCard from "../dashboard/property/PropertyCard";
 import type { Swiper as SwiperType } from "swiper";
 import { useRef } from "react";
+import PropertyMap from "@/components/main/PropertyMap";
 
 interface BannerProps {
   properties: typeof propertyData;
+  selectedCategory: string;
 }
 
-const Banner = ({ properties }: BannerProps) => {
+const Banner = ({ properties ,selectedCategory}: BannerProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <div className="relative mt-4 w-full overflow-hidden">
-      {/* Banner Image */}
-      <Image
-        src="/banner-sakk.jpg"
-        alt="Real Estate Banner"
-        width={1920}
-        height={736}
-        className="w-full h-auto object-cover"
-        priority
-      />
+      <PropertyMap
+      selectedCategory={selectedCategory}
+      properties={properties}  />
 
       {/* Cards Overlay */}
       <div className="absolute inset-0 pointer-events-none">

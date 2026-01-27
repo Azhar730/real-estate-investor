@@ -83,7 +83,7 @@ const Navbar = ({ selectedCategory, setSelectedCategory }: NavbarProps) => {
     <div
       className={cn(
         " flex items-center justify-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
-        isMobile ? "w-full" : "w-full max-w-5xl",
+        isMobile ? "w-full" : "w-full max-w-4xl",
         !isMobile &&
           "hover:shadow-[0_20px_60px_rgba(0,0,0,0.8)] shadow-[0_15px_50px_rgba(0,0,0,0.6)]",
       )}
@@ -132,7 +132,7 @@ const Navbar = ({ selectedCategory, setSelectedCategory }: NavbarProps) => {
 
   // Category Pills
   const CategoryPills = () => (
-    <div className="flex justify-center items-center gap-3 flex-wrap px-2 py-2 w-full">
+    <div className="flex justify-center items-center gap-3 flex-wrap px-2 py-2 mr-0 lg:mr-26">
       {CATEGORY_BUTTONS.map((cat, i) => (
         <Button
           key={i}

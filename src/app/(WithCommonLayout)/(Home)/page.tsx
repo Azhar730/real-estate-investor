@@ -1,4 +1,5 @@
 "use client";
+import PropertyMap from "@/components/main/PropertyMap";
 import Banner from "@/components/modules/home/Banner";
 import DeveloperProjects from "@/components/modules/home/DeveloperProjects";
 import FeaturedProperties from "@/components/modules/home/FeaturedProperties";
@@ -27,7 +28,9 @@ const HomePage = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <Banner properties={filteredProperties} />
+      <Banner
+      selectedCategory={selectedCategory}
+      properties={filteredProperties} />
       <Services />
       <FeaturedProperties />
       <GigaProjects />
