@@ -82,7 +82,7 @@ const Navbar = ({ selectedCategory, setSelectedCategory }: NavbarProps) => {
   const SearchBar = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
       className={cn(
-        " flex items-center justify-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
+        "flex items-center justify-center gap-3 bg-zinc-950/90 backdrop-blur-md rounded-full border border-white/10 px-3 py-2 transition-all",
         isMobile ? "w-full" : "w-full max-w-4xl",
         !isMobile &&
           "hover:shadow-[0_20px_60px_rgba(0,0,0,0.8)] shadow-[0_15px_50px_rgba(0,0,0,0.6)]",
@@ -160,8 +160,8 @@ const Navbar = ({ selectedCategory, setSelectedCategory }: NavbarProps) => {
       {/* Navbar */}
       <nav
         className={cn(
-          "top-0 left-0 right-0 z-50 bg-neutral-800 border-b border-zinc-500 flex flex-col items-center py-4 md:py-6 transition-all duration-300",
-          { "backdrop-blur-md shadow-md": isScrolled || pathName !== "/" },
+          "relative z-50 bg-neutral-800 border-b border-zinc-500 flex flex-col items-center py-4 md:py-6 transition-all",
+          { "backdrop-blur-md shadow-md": isScrolled },
         )}
       >
         <div className="w-full max-w-full px-4 md:px-20 flex flex-col gap-4 items-center">

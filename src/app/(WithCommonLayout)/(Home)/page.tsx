@@ -15,7 +15,6 @@ import { useState } from "react";
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Properties");
 
-  // ফিল্টার করা প্রপার্টি
   const filteredProperties =
     selectedCategory === "All Properties"
       ? propertyData
@@ -24,13 +23,15 @@ const HomePage = () => {
         );
   return (
     <div className="">
-      <Navbar
+      {/* <Navbar
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
-      />
+      /> */}
       <Banner
-      selectedCategory={selectedCategory}
-      properties={filteredProperties} />
+        selectedCategory={selectedCategory}
+        properties={filteredProperties}
+        setSelectedCategory={setSelectedCategory}
+      />
       <Services />
       <FeaturedProperties />
       <GigaProjects />

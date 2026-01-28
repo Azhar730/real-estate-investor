@@ -3,11 +3,18 @@
 import mapboxgl from "mapbox-gl";
 import { useEffect, useRef } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!;
 
-export default function PropertyMap({ properties, selectedCategory }: any) {
+export default function PropertyMap({
+  properties,
+  selectedCategory,
+  isMapActive,
+}: any) {
   const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<mapboxgl.Map | null>(null);
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -22,12 +29,28 @@ export default function PropertyMap({ properties, selectedCategory }: any) {
       antialias: true,
       config: {
         basemap: {
-          lightPreset: "night"
-        }
-      }
+          lightPreset: "night",
+        },
+      },
     });
 
-    map.addControl(new mapboxgl.NavigationControl({ showCompass: true }), "bottom-right");
+    map.addControl(
+      new mapboxgl.NavigationControl({ showCompass: true }),
+      "bottom-right",
+    );
+
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken!,
+      mapboxgl: mapboxgl as any,
+      marker: false,
+      placeholder: "Search location (e.g. Riyadh, Makkah)",
+      // countries: "sa", // 🇸🇦 শুধু Saudi Arabia
+      zoom: 16,
+    });
+    // if (isMapActive) {
+    //   map.addControl(geocoder, "top-right");
+    // }
+    map.addControl(geocoder, "top-right");
 
     map.on("style.load", () => {
       map.addLayer({
@@ -52,7 +75,8 @@ export default function PropertyMap({ properties, selectedCategory }: any) {
         el.style.color = "#ffeb3b";
         el.style.fontSize = "20px";
         el.style.fontWeight = "bold";
-        el.style.textShadow = "0 0 12px rgba(255,235,59,0.9), 0 0 24px rgba(0,0,0,0.9)";
+        el.style.textShadow =
+          "0 0 12px rgba(255,235,59,0.9), 0 0 24px rgba(0,0,0,0.9)";
         el.style.background = "rgba(0,0,0,0.65)";
         el.style.padding = "8px 16px";
         el.style.borderRadius = "10px";
@@ -70,7 +94,23 @@ export default function PropertyMap({ properties, selectedCategory }: any) {
     });
 
     return () => map.remove();
-  }, [properties, selectedCategory]);
+  }, [properties, selectedCategory, isMapActive]);
 
-  return <div ref={mapRef} className="absolute inset-0 h-260 w-full rounded-xl overflow-hidden" />;
+  useEffect(() => {
+    if (!mapInstance.current) return;
+
+    if (isMapActive) {
+      mapInstance.current.scrollZoom.enable();
+      mapInstance.current.dragPan.enable();
+      mapInstance.current.doubleClickZoom.enable();
+    } else {
+      mapInstance.current.scrollZoom.disable();
+      mapInstance.current.dragPan.disable();
+      mapInstance.current.doubleClickZoom.disable();
+    }
+  }, [isMapActive]);
+
+  return (
+    <div ref={mapRef} className="absolute inset-0 h-260 w-full rounded-xl" />
+  );
 }
